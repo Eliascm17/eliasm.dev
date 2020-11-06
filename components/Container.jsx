@@ -6,7 +6,6 @@ import styled from '@emotion/styled';
 import Footer from './Footer';
 
 const StickyNav = styled(Flex)`
-  position: sticky;
   z-index: 10;
   top: 0;
   backdrop-filter: saturate(180%) blur(20px);
@@ -51,8 +50,8 @@ const Container = ({ children }) => {
                 />
                 <img
                     style={{
-                        width: '80px',
-                        height: '80px',
+                        width: '20%',
+                        height: 'auto',
                         borderRadius: '50%'
                     }}
                     src="githubpic.jpeg" alt="me"
