@@ -10,7 +10,7 @@ const Footer = () => (
                     aria-label="Twitter"
                     icon="twitter"
                     size="lg"
-                    color="blue.500"
+                    color="gray.500"
                     variant="ghost"
                 />
             </Link>
@@ -19,7 +19,7 @@ const Footer = () => (
                     aria-label="GitHub"
                     icon="github"
                     size="lg"
-                    color="gray.400"
+                    color="gray.500"
                     variant="ghost"
                 />
             </Link>
@@ -44,6 +44,19 @@ const Footer = () => (
                 <IconButton
                     aria-label="Spotify"
                     icon="spotify"
+                    size="lg"
+                    color="gray.500"
+                    variant="ghost"
+                />
+            </Link>
+            <Link
+                href="https://eliascm17.github.io/Resume/Resume%20Fall%202020.pdf"
+                title="Resume"
+                isExternal
+            >
+                <IconButton
+                    aria-label="Resume"
+                    icon="resume"
                     size="lg"
                     color="gray.500"
                     variant="ghost"

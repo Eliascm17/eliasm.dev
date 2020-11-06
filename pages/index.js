@@ -8,9 +8,11 @@ import {
     Link
 } from '@chakra-ui/core';
 import Container from '../components/Container';
+import Project from '../components/Project';
 
 export default function Home() {
     const { colorMode } = useColorMode();
+
     const secondaryTextColor = {
         light: 'gray.700',
         dark: 'gray.400'
@@ -50,27 +52,9 @@ export default function Home() {
                             Texas Tech University
                         </Link>
                         &nbsp;with a degree in Computer Science and a minor in
-                        Mathematics, and my expected graduation date is December
-                        of 2020 🥳. <br />
-                        <br />I am an aspiring Software engineer that is
-                        absolutely in love with anything and everything web. My
-                        favorite technology to use as of this moment is&nbsp;
-                        <Link
-                            href="https://reactjs.org"
-                            title="reactjs.org"
-                            isExternal
-                        >
-                            Reactjs.
-                        </Link>
-                        {/* &nbsp;I spend most of my time studying for classes, but
-                        as of right now I'm working on my&nbsp;
-                        <Link
-                            href="https://github.com/Athena-Capstone-2020/athena-mobile-app"
-                            title="Athena"
-                            isExternal
-                        >
-                            Senior Capstone Project
-                        </Link> */}
+                        Mathematics. My expected graduation date is December of
+                        2020 🥳, and I'm currently seeking full-time Front-End
+                        Developer positions.
                     </Text>
                 </Flex>
                 <Flex
@@ -78,15 +62,8 @@ export default function Home() {
                     justifyContent="flex-start"
                     alignItems="flex-start"
                     maxWidth="700px"
-                    mt={8}
-                ></Flex>
-                <Flex
-                    flexDirection="column"
-                    justifyContent="flex-start"
-                    alignItems="flex-start"
-                    maxWidth="700px"
                 >
-                    {/* <Heading
+                    <Heading
                         letterSpacing="tight"
                         mb={4}
                         size="xl"
@@ -94,24 +71,29 @@ export default function Home() {
                     >
                         Projects
                     </Heading>
-                    <ProjectCard
-                        title="React 2025"
-                        description="Build and deploy a modern Jamstack application using the most popular open-source software."
-                        href="https://react2025.com/"
-                        icon="react2025"
+                    <Project
+                        title="Athena - Senior Capstone (CS 4366)"
+                        description="A kitchen inventory mobile application useful for tracking a kitchen’s current inventory and a helpful way to minimize food waste."
+                        href="https://github.com/Athena-Capstone-2020/athena-mobile-app"
+                        iconlist={[
+                            'react',
+                            'javascript',
+                            'firebase',
+                            'adobexd'
+                        ]}
                     />
-                    <ProjectCard
-                        title="Mastering Next.js"
-                        description="A free video course for building static and server-side rendered applications with Next.js and React."
-                        href="https://masteringnextjs.com/"
-                        icon="nextjs"
+                    <Project
+                        title="Gift Fund Tracker - TTU Institutional Advancement"
+                        description="Implemented high-profile web app that tracks and improves the time of scholarship lookups by more than double, leading to faster financial aid review and award times."
+                        href=""
+                        iconlist={['react', 'javascript', 'nextjs', 'adobexd']}
                     />
-                    <ProjectCard
-                        title="jamstackfns"
-                        description="The best serverless functions for JAMstack applications. Deploy to Vercel or Netlify for your static site."
-                        href="https://jamstackfns.com/"
-                        icon="jamstackfns"
-                    /> */}
+                    <Project
+                        title="Prospect Affinity Model – TTU Institutional Advancement"
+                        description="Tasked with ranking donors in the alumni CRM in a more intelligent way using RFM analysis and Customer Segmentation techniques"
+                        href=""
+                        iconlist={['python']}
+                    />
                 </Flex>
             </Stack>
         </Container>
