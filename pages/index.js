@@ -38,7 +38,7 @@ export default function Home() {
                     maxWidth="700px"
                 >
                     <Heading letterSpacing="tight" mb={2} as="h1" size="2xl">
-                        Hello, I'm Elias 👨🏾‍💻
+                        Hi, I'm Elias 👨🏾‍💻
                     </Heading>
                     <Text color={secondaryTextColor[colorMode]}>
                         I am a soon to be graduate of&nbsp;
