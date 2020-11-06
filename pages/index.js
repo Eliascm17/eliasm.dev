@@ -5,7 +5,8 @@ import {
     Text,
     Flex,
     Stack,
-    Link
+    Link,
+    Icon
 } from '@chakra-ui/core';
 import Container from '../components/Container';
 import Project from '../components/Project';
@@ -22,6 +23,20 @@ export default function Home() {
         light: '#d41111',
         dark: 'blue.400'
     };
+
+    const iconColor = {
+        light: 'white',
+        dark: 'gray.900'
+    };
+
+    const favorites = [
+        'react',
+        'nextjs',
+        'javascript',
+        'grpahql',
+        'adobexd',
+        'python'
+    ];
 
     return (
         <Container>
@@ -94,6 +109,41 @@ export default function Home() {
                         href=""
                         iconlist={['python']}
                     />
+                </Flex>
+                <Flex
+                    flexDirection="column"
+                    justifyContent="flex-start"
+                    alignItems="flex-start"
+                    maxWidth="700px"
+                >
+                    <Heading
+                        letterSpacing="tight"
+                        mb={4}
+                        size="xl"
+                        fontWeight={700}
+                    >
+                        My Favorite Technologies
+                    </Heading>
+                    <Text>
+                        {favorites.map((icon, key) => {
+                            return (
+                                <Icon
+                                    key={key}
+                                    aria-label={icon}
+                                    name={icon}
+                                    color={
+                                        icon === 'nextjs'
+                                            ? ''
+                                            : iconColor[colorMode]
+                                    }
+                                    size="60px"
+                                    ml={2}
+                                    mr={2}
+                                    mt={[4, 3, 1, 0]}
+                                />
+                            );
+                        })}
+                    </Text>
                 </Flex>
             </Stack>
         </Container>
