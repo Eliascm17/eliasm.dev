@@ -1,9 +1,8 @@
-import React from 'react';
-import NextLink from 'next/link';
-import { useColorMode, Button, Flex, Box, IconButton } from '@chakra-ui/core';
+import { Flex, IconButton, useColorMode } from '@chakra-ui/core';
 import styled from '@emotion/styled';
-
+import React from 'react';
 import Footer from './Footer';
+
 
 const StickyNav = styled(Flex)`
   z-index: 10;
@@ -54,7 +53,7 @@ const Container = ({ children }) => {
                         height: 'auto',
                         borderRadius: '50%'
                     }}
-                    src="githubpic.jpeg" alt="me"
+                    src="me2.jpeg" alt="me"
                 />
             </StickyNav>
             <Flex

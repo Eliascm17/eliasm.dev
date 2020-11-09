@@ -1,4 +1,6 @@
-import { Flex, Heading, Icon, Link, Stack, Text, useColorMode } from '@chakra-ui/core';
+import { Flex, Heading, Icon, Box, Stack, Text, useColorMode } from '@chakra-ui/core';
+import Link from 'next/link'
+import { motion } from 'framer-motion';
 import React from 'react';
 
 const Project = ({ title, description, href, iconlist }) => {
@@ -17,48 +19,55 @@ const Project = ({ title, description, href, iconlist }) => {
 
     return (
         <Link
-            mb={6}
-            href={href}
-            title={title}
-            isExternal
+            href={href ? href : ""}
+            passHref
             _hover={{
                 boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.05)',
                 textDecoration: 'none'
             }}
         >
-            <Flex
-                align="center"
-                border="1px solid"
-                borderColor={borderColor[colorMode]}
-                borderRadius={4}
-                p={4}
-            >
-                <Stack>
-                    <Heading
-                        as="h4"
-                        size="md"
-                        fontWeight="bold"
-                        mb={4}
-                        letterSpacing="tighter"
+            <Box mb={6}>
+                <motion.div
+                    whileHover={{
+                        scale: 1.05,
+                        transition: { duration: 0.2 }
+                    }}
+                >
+                    <Flex
+                        align="center"
+                        border="1px solid"
+                        borderColor={borderColor[colorMode]}
+                        borderRadius={4}
+                        p={4}
                     >
-                        {title}
-                    </Heading>
-                    <Text lineHeight="1.3">{description}</Text>
-                    <Text lineHeight="1.3">Built with:
+                        <Stack>
+                            <Heading
+                                as="h4"
+                                size="md"
+                                fontWeight="bold"
+                                mb={4}
+                                letterSpacing="tighter"
+                            >
+                                {title}
+                            </Heading>
+                            <Text lineHeight="1.3">{description}</Text>
+                            <Text lineHeight="1.3">Built with:
                     {iconlist.map((icon, key) => {
-                        return <Icon
-                            key={key}
-                            aria-label={icon}
-                            name={icon}
-                            color={icon === 'nextjs' ? '' : iconColor[colorMode]}
-                            size="32px"
-                            ml={2}
-                            mr={2}
-                        />
-                    })}
-                    </Text>
-                </Stack>
-            </Flex>
+                                return <Icon
+                                    key={key}
+                                    aria-label={icon}
+                                    name={icon}
+                                    color={icon === 'nextjs' ? '' : iconColor[colorMode]}
+                                    size="32px"
+                                    ml={2}
+                                    mr={2}
+                                />
+                            })}
+                            </Text>
+                        </Stack>
+                    </Flex>
+                </motion.div>
+            </Box>
         </Link>
     );
 };
