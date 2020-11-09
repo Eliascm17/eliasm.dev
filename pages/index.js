@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
     useColorMode,
     Heading,
@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/core';
 import Container from '../components/Container';
 import Project from '../components/Project';
+import Experience from '../components/Experience';
 
 export default function Home() {
     const { colorMode } = useColorMode();
@@ -100,14 +101,70 @@ export default function Home() {
                     <Project
                         title="Gift Fund Tracker - TTU Institutional Advancement"
                         description="Implemented high-profile web app that tracks and improves the time of scholarship lookups by more than double, leading to faster financial aid review and award times."
-                        href=""
                         iconlist={['react', 'javascript', 'nextjs', 'adobexd']}
                     />
                     <Project
                         title="Prospect Affinity Model – TTU Institutional Advancement"
                         description="Tasked with ranking donors in the alumni CRM in a more intelligent way using RFM analysis and Customer Segmentation techniques"
-                        href=""
                         iconlist={['python']}
+                    />
+                </Flex>
+                <Flex
+                    flexDirection="column"
+                    justifyContent="flex-start"
+                    alignItems="flex-start"
+                    maxWidth="700px"
+                >
+                    <Heading
+                        letterSpacing="tight"
+                        mb={4}
+                        size="xl"
+                        fontWeight={700}
+                    >
+                        Experience
+                    </Heading>
+                    <Experience
+                        company="Texas Tech University"
+                        date="Sept 2019 - Dec 2020"
+                        location="Lubbock, Texas"
+                        role="Software Engineer Intern"
+                        href="http://www.give2tech.com/"
+                        description={
+                            <Text>
+                                Worked on projects such as Prospect Affinity
+                                Model and Gift Fund Tracker. Both projects were
+                                developed in tandem with and for Texas Tech
+                                Institutional Advancement.
+                            </Text>
+                        }
+                    />
+                    <Experience
+                        company="AdaptIO"
+                        date="Summer 2019"
+                        location="Córdoba, Argentina"
+                        role="Data Science Intern"
+                        href="https://www.adaptio.com.ar/"
+                        description={
+                            <Text>
+                                Worked on projects such as&nbsp;
+                                <Link
+                                    href="http://www.smartcities.com.ar/iGas/index.html"
+                                    title="iGas"
+                                    isExternal
+                                >
+                                    iGas Prediction
+                                </Link>
+                                . For this project I was tasked with using
+                                company data to examine correlations between
+                                rates of depletion of gas tanks and weather
+                                temperatures. I Approached this project by using
+                                climate data from the Dark Sky API in
+                                conjunction with basic statistical analysis as
+                                well as forms of machine learning (Time-Series
+                                Analysis) to ultimately predict rates of
+                                consumption.
+                            </Text>
+                        }
                     />
                 </Flex>
                 <Flex
