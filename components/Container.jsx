@@ -53,7 +53,7 @@ const Container = ({ children }) => {
                         height: 'auto',
                         borderRadius: '50%'
                     }}
-                    src="me2.jpeg" alt="me"
+                    src="Me2.jpeg" alt="me"
                 />
             </StickyNav>
             <Flex
