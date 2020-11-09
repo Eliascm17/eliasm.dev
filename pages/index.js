@@ -6,7 +6,8 @@ import {
     Flex,
     Stack,
     Link,
-    Icon
+    Icon,
+    Scale
 } from '@chakra-ui/core';
 import Container from '../components/Container';
 import Project from '../components/Project';
