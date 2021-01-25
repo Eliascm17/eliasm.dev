@@ -1,4 +1,4 @@
-import { Flex, IconButton, Link } from '@chakra-ui/core';
+import { Flex, IconButton, Link } from '@chakra-ui/react';
 import React from 'react';
 
 const Footer = () => (

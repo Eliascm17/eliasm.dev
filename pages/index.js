@@ -6,12 +6,12 @@ import {
     Flex,
     Stack,
     Link,
-    Icon,
     Scale
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import Container from '../components/Container';
 import Project from '../components/Project';
 import Experience from '../components/Experience';
+import Icon from '@/components/Icon';
 
 export default function Home() {
     const { colorMode } = useColorMode();
@@ -31,14 +31,7 @@ export default function Home() {
         dark: 'gray.900'
     };
 
-    const favorites = [
-        'react',
-        'nextjs',
-        'javascript',
-        'grpahql',
-        'adobexd',
-        'python'
-    ];
+    const favorites = ['react', 'nextjs', 'javascript', 'firebase', 'adobexd'];
 
     return (
         <Container>
@@ -60,18 +53,7 @@ export default function Home() {
                         Hi, I'm Elias 👨🏾‍💻
                     </Heading>
                     <Text color={secondaryTextColor[colorMode]}>
-                        I am a soon to be graduate of&nbsp;
-                        <Link
-                            href="https://www.ttu.edu/"
-                            title="ttu.edu"
-                            isExternal
-                        >
-                            Texas Tech University
-                        </Link>
-                        &nbsp;with a degree in Computer Science and a minor in
-                        Mathematics. My expected graduation date is December of
-                        2020 🥳, and I'm currently seeking full-time Front-End
-                        Developer positions.
+                        Software Engineer at Samsung Austin Semiconductors
                     </Text>
                 </Flex>
                 <Flex
@@ -124,6 +106,15 @@ export default function Home() {
                     >
                         Experience
                     </Heading>
+                    <Experience
+                        company="Samsung Austin Semiconductors"
+                        date="January 2020 - Present"
+                        logo="samsung"
+                        location="Austin, Texas"
+                        role="Software Engineer"
+                        href="https://www.samsung.com/us/sas/"
+                        description={<Text>Systems Development</Text>}
+                    />
                     <Experience
                         company="Texas Tech University"
                         date="Sept 2019 - Dec 2020"
@@ -194,7 +185,7 @@ export default function Home() {
                                             ? ''
                                             : iconColor[colorMode]
                                     }
-                                    size="60px"
+                                    boxSize="60px"
                                     ml={2}
                                     mr={2}
                                     mt={[4, 3, 1, 0]}

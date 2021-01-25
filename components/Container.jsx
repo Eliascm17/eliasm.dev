@@ -1,4 +1,5 @@
-import { Flex, IconButton, useColorMode } from '@chakra-ui/core';
+import { Flex, IconButton, useColorMode } from '@chakra-ui/react';
+import { SunIcon, MoonIcon } from '@chakra-ui/icons'
 import styled from '@emotion/styled';
 import React from 'react';
 import Footer from './Footer';
@@ -18,10 +19,12 @@ const Container = ({ children }) => {
         light: 'white',
         dark: 'gray.900'
     };
+
     const primarytextColor = {
         light: 'black',
         dark: 'white'
     };
+
     const navBgColor = {
         light: 'rgba(255, 255, 255, 0.8)',
         dark: 'rgba(23, 25, 35, 0.8)'
@@ -42,19 +45,23 @@ const Container = ({ children }) => {
                 mb={8}
                 mx="auto"
             >
-                <IconButton
+                {/* <IconButton
                     aria-label="Toggle dark mode"
-                    icon={colorMode === 'dark' ? 'sun' : 'moon'}
+                    bg={colorMode === 'dark' ? "gray.700" : "black"}
+                    color={colorMode === 'dark' ? "white" : "black"}
+                    icon={colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}
                     onClick={toggleColorMode}
-                />
-                <img
-                    style={{
-                        width: '20%',
-                        height: 'auto',
-                        borderRadius: '50%'
-                    }}
-                    src="Me2.jpeg" alt="me"
-                />
+                /> */}
+                <Flex justify="flex-end">
+                    <img
+                        style={{
+                            width: '20%',
+                            height: 'auto',
+                            borderRadius: '50%'
+                        }}
+                        src="me.jpg" alt="me"
+                    />
+                </Flex>
             </StickyNav>
             <Flex
                 as="main"
