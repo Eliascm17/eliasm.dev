@@ -1,17 +1,16 @@
-import React, { useRef } from 'react';
-import {
-    useColorMode,
-    Heading,
-    Text,
-    Flex,
-    Stack,
-    Link,
-    Scale
-} from '@chakra-ui/react';
-import Container from '../components/Container';
-import Project from '../components/Project';
-import Experience from '../components/Experience';
 import Icon from '@/components/Icon';
+import {
+    Flex,
+    Heading,
+    Link,
+    Stack,
+    Text,
+    useColorMode
+} from '@chakra-ui/react';
+import React from 'react';
+import Container from '../components/Container';
+import Experience from '../components/Experience';
+import Project from '../components/Project';
 
 export default function Home() {
     const { colorMode } = useColorMode();

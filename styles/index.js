@@ -1,6 +1,6 @@
 export { Adobexd } from './adobexd';
 export { Check } from './check';
-export { Firebase } from './Firebase';
+export { Firebase } from './firebase';
 export { Github } from './github';
 export { Graphql } from './graphql';
 export { Javascript } from './javascript';
