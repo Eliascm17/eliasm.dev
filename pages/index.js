@@ -11,6 +11,7 @@ import React from 'react';
 import Container from '../components/Container';
 import Experience from '../components/Experience';
 import Project from '../components/Project';
+import Head from 'next/head';
 
 export default function Home() {
     const { colorMode } = useColorMode();
@@ -48,6 +49,9 @@ export default function Home() {
                     alignItems="flex-start"
                     maxWidth="700px"
                 >
+                    <Head>
+                        <title>Elias Moreno 👨🏾‍💻</title>
+                    </Head>
                     <Heading letterSpacing="tight" mb={2} as="h1" size="2xl">
                         Hi, I'm Elias 👨🏾‍💻
                     </Heading>

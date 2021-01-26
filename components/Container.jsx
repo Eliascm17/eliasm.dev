@@ -55,10 +55,11 @@ const Container = ({ children }) => {
                 <Flex justify="flex-end">
                     <img
                         style={{
-                            width: '20%',
-                            height: 'auto',
                             borderRadius: '50%'
                         }}
+                        width="23%"
+                        height="auto"
+                        borderRadius="50%"
                         src="me.jpg" alt="me"
                     />
                 </Flex>
