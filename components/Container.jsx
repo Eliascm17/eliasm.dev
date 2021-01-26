@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { Flex, IconButton, useColorMode } from '@chakra-ui/react';
 import { SunIcon, MoonIcon } from '@chakra-ui/icons'
 import styled from '@emotion/styled';
@@ -45,6 +46,9 @@ const Container = ({ children }) => {
                 mb={8}
                 mx="auto"
             >
+                <Head>
+                    <title>Fast Feedback</title>
+                </Head>
                 {/* <IconButton
                     aria-label="Toggle dark mode"
                     bg={colorMode === 'dark' ? "gray.700" : "black"}
@@ -55,10 +59,11 @@ const Container = ({ children }) => {
                 <Flex justify="flex-end">
                     <img
                         style={{
-                            width: '20%',
-                            height: 'auto',
                             borderRadius: '50%'
                         }}
+                        width="23%"
+                        height="auto"
+                        borderRadius="50%"
                         src="me.jpg" alt="me"
                     />
                 </Flex>

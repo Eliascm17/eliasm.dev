@@ -9,6 +9,7 @@ const theme = extendTheme({
         medium: 600,
         bold: 700
     },
+    breakpoints: ['30em', '48em', '62em', '80em'],
     initialColorMode: 'dark',
     useSystemColorMode: false
 });
