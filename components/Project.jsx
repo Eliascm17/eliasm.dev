@@ -1,5 +1,6 @@
-import { Flex, Heading, Icon, Box, Stack, Text, useColorMode } from '@chakra-ui/core';
+import { Flex, Heading, Box, Stack, Text, useColorMode } from '@chakra-ui/react';
 import Link from 'next/link'
+import Icon from '@/components/Icon'
 import { motion } from 'framer-motion';
 import React from 'react';
 
@@ -52,15 +53,14 @@ const Project = ({ title, description, href, iconlist }) => {
                             </Heading>
                             <Text lineHeight="1.3">{description}</Text>
                             <Text lineHeight="1.3">Built with:
-                    {iconlist.map((icon, key) => {
+                            {iconlist.map((icon, key) => {
                                 return <Icon
                                     key={key}
                                     aria-label={icon}
                                     name={icon}
                                     color={icon === 'nextjs' ? '' : iconColor[colorMode]}
-                                    size="32px"
-                                    ml={2}
-                                    mr={2}
+                                    boxSize="32px"
+                                    mx={2}
                                 />
                             })}
                             </Text>
