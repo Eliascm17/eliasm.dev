@@ -62,7 +62,7 @@ const Container = ({ children }) => {
                             borderRadius: '50%'
                         }}
                         width="23%"
-                        height="auto"
+                        height="23%"
                         borderRadius="50%"
                         src="me.jpg" alt="me"
                     />
