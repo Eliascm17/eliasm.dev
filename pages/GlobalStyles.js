@@ -1,11 +1,7 @@
-import {
-  CSSReset,
-  useColorMode
-} from '@chakra-ui/react';
+import { CSSReset, useColorMode } from '@chakra-ui/react';
 import { css, Global } from '@emotion/react';
 import React from 'react';
 import { prismDarkTheme, prismLightTheme } from '../styles/prism';
-
 
 export const GlobalStyle = ({ children }) => {
   const { colorMode } = useColorMode();
@@ -13,7 +9,7 @@ export const GlobalStyle = ({ children }) => {
   return (
     <>
       <CSSReset />
-      <Global
+      {/* <Global
         styles={css`
           ${colorMode === 'light' ? prismLightTheme : prismDarkTheme};
 
@@ -34,7 +30,7 @@ export const GlobalStyle = ({ children }) => {
             background: ${colorMode === 'light' ? 'white' : '#171923'};
           }
         `}
-      />
+      /> */}
       {children}
     </>
   );

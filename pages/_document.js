@@ -5,21 +5,19 @@ import theme from '@/styles/theme';
 import { ColorModeScript } from '@chakra-ui/react';
 
 class MyDocument extends Document {
-    render() {
-        return (
-            <Html lang="en">
-                <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
-                <Head />
-                <body>
-                    <ColorModeScript
-                        initialColorMode={theme.config.initialColorMode}
-                    />
-                    <Main />
-                    <NextScript />
-                </body>
-            </Html>
-        );
-    }
+  render() {
+    return (
+      <Html lang="en">
+        <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+        <Head />
+        <body>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }
 
 export default MyDocument;
