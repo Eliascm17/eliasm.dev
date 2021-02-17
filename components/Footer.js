@@ -8,7 +8,7 @@ const Footer = () => (
     display="flex"
     justifyContent="space-around"
     alignSelf="center"
-    align="center"
+    align="end"
     maxW={['200px', '500px']}
     w="100%"
     mb={4}
