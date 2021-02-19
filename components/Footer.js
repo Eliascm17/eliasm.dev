@@ -11,7 +11,7 @@ const Footer = () => (
     align="end"
     maxW={['200px', '500px']}
     w="100%"
-    mb={4}
+    my={6}
   >
     <Link href="https://twitter.com/eliascm17" title="Twitter" isExternal>
       <Twitter

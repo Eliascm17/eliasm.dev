@@ -1,39 +1,46 @@
-import Image from 'next/image';
-import { Flex } from '@chakra-ui/react';
+import { Flex, Text, Image } from '@chakra-ui/react';
 import { parseISO, format } from 'date-fns';
 import Container from './Container';
-import BlogPost from './BlogPost';
+import BlogContainer from './BlogContainer';
 
 const BlogLayout = ({ children, frontMatter }) => {
   return (
-    <Container
-      title={`${frontMatter.title} - Elias Moreno`}
-      description={frontMatter.summary}
-      // date={new Date(frontMatter.publishedAt).toISOString()}
-    >
-      <Flex flexDirection="column" alignSelf="center">
-        <article>
-          <h1>{frontMatter.title}</h1>
-          <div>
-            <div>
-              <Image
-                alt="Elias Moreno"
-                height={24}
-                width={24}
-                src="/Me.jpg"
-                className="rounded-full"
-              />
-              <p>
-                {'Elias Moreno /'}
-                {/* {format(parseISO(frontMatter.publishedAt), 'MMMM dd yyyy')} */}
-              </p>
-            </div>
-            <div>{children}</div>
-          </div>
-        </article>
+    <Container>
+      <Flex
+        flexDirection="column"
+        alignSelf="center"
+        m="0 auto 4rem auto"
+        maxWidth="700px"
+      >
+        <Text fontSize={['4xl', '4xl', '5xl', '6xl']} fontWeight="bold">
+          {frontMatter.title}
+        </Text>
+        <Flex
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="space-between"
+          mt={2}
+        >
+          <Flex alignItems="center">
+            <Image
+              borderRadius="full"
+              boxSize="35px"
+              src="/Me.jpg"
+              alt="Elias Moreno"
+            />
+            <Text fontSize="md" ml={4}>
+              {`Elias Moreno / ${format(
+                new Date(frontMatter.timestamp),
+                'MMMM dd yyyy'
+              )}`}
+            </Text>
+          </Flex>
+        </Flex>
+        <Text>{children}</Text>
       </Flex>
     </Container>
   );
 };
+//2021-02-20T14:48:00.000Z
 
 export default BlogLayout;
