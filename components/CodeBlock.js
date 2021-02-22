@@ -37,9 +37,9 @@ const CodeBlock = ({ children, className }) => {
               ...style,
               padding: '20px',
               overflow: 'scroll',
-              overflowInline: 'visible',
-              textAlign: 'left',
-              WebkitOverflowScrolling: 'touch'
+              overflowX: 'scroll',
+              overflowY: 'auto',
+              overflowInline: 'visible'
             }}
           >
             {tokens.map((line, i) => (
