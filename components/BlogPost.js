@@ -20,7 +20,7 @@ const BlogPost = ({ title, summary, id }) => {
   return (
     <Link href={`/blog/${id}`}>
       <a>
-        <Box mb={6} w={['300px', '400px', '600px', '800px']} p={10}>
+        <Box mb={6} w={['400px', '450px', '600px', '800px']} p={10}>
           <motion.div
             whileHover={{
               scale: 1.03,
