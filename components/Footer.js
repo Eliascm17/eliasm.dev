@@ -8,10 +8,10 @@ const Footer = () => (
     display="flex"
     justifyContent="space-around"
     alignSelf="center"
-    align="center"
-    maxW={['200px', '500px']}
+    align="end"
+    maxW={['200px', '300px', '350px', '400px']}
     w="100%"
-    mb={4}
+    my={6}
   >
     <Link href="https://twitter.com/eliascm17" title="Twitter" isExternal>
       <Twitter
@@ -70,7 +70,7 @@ const Footer = () => (
         variant="ghost"
       />
     </Link>
-    <Link href="mailto:app@eliasm.dev" title="Email" isExternal>
+    <Link href="mailto:Elias.cmoreno17@gmail.com" title="Email" isExternal>
       <EmailIcon
         aria-label="Email"
         icon="mail"

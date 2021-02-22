@@ -1,8 +1,10 @@
+import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Box, Flex, IconButton, useColorMode } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import NextLink from 'next/link';
-import React from 'react';
 import Footer from './Footer';
 
 const StickyNav = styled(Flex)`
@@ -12,32 +14,17 @@ const StickyNav = styled(Flex)`
   transition: background-color 0.1 ease-in-out;
 `;
 
-const Container = ({ children }) => {
+const Container = ({ children, ...customMeta }) => {
+  const [mounted, setMounted] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
+  const router = useRouter();
 
-  const bgColor = {
-    light: 'white',
-    dark: 'gray.800'
-  };
+  // After mounting, we have access to the theme
+  useEffect(() => setMounted(true), []);
 
-  const primarytextColor = {
-    light: 'black',
-    dark: 'white'
-  };
-
-  const buttonBgColor = {
-    light: 'gray.100',
-    dark: 'gray.700'
-  };
-
-  const buttonIcon = {
-    light: <MoonIcon />,
-    dark: <SunIcon />
-  };
-
-  const buttonHover = {
-    light: 'gray.300',
-    dark: 'gray.600'
+  const meta = {
+    type: 'website',
+    ...customMeta
   };
 
   return (
@@ -56,6 +43,29 @@ const Container = ({ children }) => {
         mb={8}
         mx="auto"
       >
+        <Head>
+          <title>{meta.title}</title>
+          <meta name="robots" content="follow, index" />
+          <meta content={meta.description} name="description" />
+          <meta
+            property="og:url"
+            content={`https://Eliasm.dev${router.asPath}`}
+          />
+          <link rel="canonical" href={`https://Eliasm.dev${router.asPath}`} />
+          <meta property="og:type" content={meta.type} />
+          <meta property="og:site_name" content="Elias Moreno" />
+          <meta property="og:description" content={meta.description} />
+          <meta property="og:title" content={meta.title} />
+          <meta property="og:image" content={meta.image} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@Eliascm17" />
+          <meta name="twitter:title" content={meta.title} />
+          <meta name="twitter:description" content={meta.description} />
+          <meta name="twitter:image" content={meta.image} />
+          {meta.date && (
+            <meta property="article:published_time" content={meta.date} />
+          )}
+        </Head>
         <IconButton
           aria-label="Toggle dark mode"
           bgColor={buttonBgColor[colorMode]}
@@ -93,3 +103,28 @@ const Container = ({ children }) => {
 };
 
 export default Container;
+
+const bgColor = {
+  light: 'white',
+  dark: 'gray.800'
+};
+
+const primarytextColor = {
+  light: 'black',
+  dark: 'white'
+};
+
+const buttonBgColor = {
+  light: 'gray.100',
+  dark: 'gray.700'
+};
+
+const buttonIcon = {
+  light: <MoonIcon />,
+  dark: <SunIcon />
+};
+
+const buttonHover = {
+  light: 'gray.300',
+  dark: 'gray.600'
+};

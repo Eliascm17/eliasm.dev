@@ -1,0 +1,75 @@
+---
+title: React Fundamentals 🚀
+timestamp: 22 Feb 2021 03:00:00 CST
+summary: A first in a series of posts going over my thoughts and reflections of a certain section in Kent C Dodd's Epic React Course
+image: /static/images/React-Fundamentals/banner.png
+---
+
+![Blog Header](/static/images/React-Fundamentals/banner.png)
+
+> A first in a series of posts going over my thoughts and reflections of what I've learned in Kent C Dodd's Course: Epic React.
+
+**Note**: I will not be giving anything away in particular as to what is in the course specifically, but I will be going over why this course is benefitting me in what I'm learning.
+
+---
+
+## From the Ground Up 🧗🏽
+
+Kent does a really good job at explaining at the lowest levels how the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction) works and how the browser exposes the DOM to allow JavaScript to interact with it. This understanding of how to generate [DOM nodes](https://www.w3schools.com/js/js_htmldom_nodes.asp) using JavaScript seems pointless, but is fundamental to how React works under the hood.
+
+If you've been using React for a while now, it may seem that the learning pace may seem a bit slow. That's because you want to just get to the more advanced parts of the course and learn all of the "cool stuff". I found myself in this boat and was quick to be stumped on some of the first exercises because I didn't particularly understand how the DOM worked in its entirety as well as how React uses it under the hood. After the first few exercises I instantly grew a better understanding and appreciation for how React works and allows the developer to do things with ease when building components.
+
+## HTML to React 🔨
+
+the course slowly introduces you to HTML (which you probably already know), and slowly transitions you to [JSX](https://reactjs.org/docs/introducing-jsx.html). This section goes over how babel converts JSX into JavaScript. The exercises show how by adding [babel](https://babeljs.io) to your development environment, it can recompile your code on each save so that you can see those instant changes in the browser.
+
+It seemed almost seamless as to how the exercises went from explaining how HTML tags worked to creating your first React component. I easily gained more appreciation for React and how it works under the hood when seeing how a React component is just a custom HTML tag with added "function" if you will. I really like the following exercises that went over explaining props and how components can become dynamic just by the data that you pass into them.
+
+## Making it look pretty 🎨
+
+Kent also goes over the many many that you can style a component in React. There is inline styling, the use of traditional css, and infinite others that he didn't mention. This shows just how many different directions you can take your project in when styling each component. With libraries such as [Chakra-UI](https://chakra-ui.com/) and [TailwindCSS](http://tailwindcss.com) it makes styling a lot easier so you can focus on the functionality of your app and less time styling with the built in properties of those libraries
+
+## Simple introduction to useState 🎣
+
+The later modules of React Fundamentals gives a nice introduction into React's famous useState hook. Kent didn't want to reinvent the wheel when breaking the ice with this fundamental pillar of React state so he just shows a simple input field where the state is managed by the useState hook. Similar to the snippet below:
+
+```jsx
+const Form = () => {
+  const [input, setInput] = React.useState('');
+  const inputRef = React.useRef();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(input);
+  };
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setInput(value.toLowerCase());
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="usernameInput">Username:</label>
+        <input
+          id="usernameInput"
+          type="text"
+          ref={inputRef}
+          onChange={handleChange}
+          value={input}
+        />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+```
+
+The exercise also goes over the use of the useRef hook which is just another way to reference the value in the input field using `inputRef.current.value`. For what might seem easy or common sense for those of us that are well versed in the world of React, these fundamental concepts are so very important and the best devs can repeat these core elements of the technology with no problem.
+
+## Conclusion 🤔
+
+I have a feeling that this section of the course is the most important of all of the sections that I and others will encounter. It was put as the first section for a reason and has very important fundamental principals that are needed to be understood before getting into more complex ideas such as React context and other ways of handling state within an actual production ready application.
+
+I'm very much excited for what this course is going to bring to me as far as a deeper understanding for React development and becoming a better software engineer. I have used React for a little over a year and have loved every second of it. I can't wait to master the React Hooks section of the course next!

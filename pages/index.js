@@ -104,7 +104,7 @@ export default function Home() {
           </Heading>
           <Experience
             company="Samsung Austin Semiconductors"
-            date="January 2020 - Present"
+            date="January 2021 - Present"
             logo="samsung"
             location="Austin, Texas"
             role="Software Engineer"
