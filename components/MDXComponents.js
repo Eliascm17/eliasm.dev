@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Tweet from 'react-tweet-embed';
-import CodeBlock from './CodeBlock';
 import {
   Heading,
   Text,
@@ -12,28 +10,20 @@ import {
   Code
 } from '@chakra-ui/react';
 import { InfoIcon } from '@chakra-ui/icons';
+import CodeBlock from './CodeBlock';
 
 const CustomLink = (props) => {
-  const { colorMode } = useColorMode();
+  const { href, children } = props;
 
-  const color = {
-    light: 'blue.100',
-    dark: 'blue.900'
-  };
-
-  const href = props.href;
-  const isInternalLink = href && href.startsWith('/');
-  const isActualLink = href && href.startsWith('http');
-
-  if (isInternalLink && isActualLink) {
+  if (href && href.startsWith('http')) {
     return (
-      <Link href={href} color={color[colorMode]} passHref>
-        <a {...props} />
+      <Link isExternal {...props}>
+        <a style={{ color: '#0075F2' }}>{children}</a>
       </Link>
     );
   }
 
-  return <Link color={color[colorMode]} isExternal {...props} />;
+  return null;
 };
 
 const Quote = (props) => {
@@ -56,9 +46,8 @@ const Quote = (props) => {
           marginLeft: 8
         }
       }}
-    >
-      <InfoIcon mr={4} /> {props.children.props.children}
-    </Alert>
+      {...props}
+    />
   );
 };
 
@@ -75,7 +64,6 @@ const Hr = () => {
 const MDXComponents = {
   Image,
   a: CustomLink,
-  Tweet,
   pre: (props) => <div {...props} />,
   code: CodeBlock,
   h1: (props) => <Heading size="xl" my={4} {...props} />,
@@ -91,7 +79,12 @@ const MDXComponents = {
   hr: Hr,
   blockquote: Quote,
   inlineCode: (props) => (
-    <Code colorScheme="telegram" fontSize="0.84em" {...props} />
+    <Code
+      colorScheme="telegram"
+      variant="subtle"
+      fontSize="0.84em"
+      {...props}
+    />
   )
 };
 

@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-import { Box, Flex } from '@chakra-ui/react';
-import dracula from 'prism-react-renderer/themes/nightOwl';
+import { Box, Flex, useColorMode } from '@chakra-ui/react';
+import nightOwl from 'prism-react-renderer/themes/nightOwl';
+import palenight from 'prism-react-renderer/themes/palenight';
 
 const CodeBlock = ({ children, className }) => {
+  const [mounted, setMounted] = useState(false);
+  const { colorMode } = useColorMode();
+
   const language = className.replace(/language-/, '');
 
+  // After mounting, we have access to the theme
+  useEffect(() => setMounted(true), []);
+
+  const code = {
+    dark: nightOwl,
+    light: palenight
+  };
+
   return (
-    <Box my={4} maxWidth="700px">
+    <Flex
+      my={4}
+      maxWidth={['325px', '460px', '600px', '700px']}
+      justify="center"
+    >
       <Highlight
         {...defaultProps}
-        theme={dracula}
+        theme={code[colorMode]}
         code={children}
         language={language}
       >
@@ -29,7 +45,7 @@ const CodeBlock = ({ children, className }) => {
           </pre>
         )}
       </Highlight>
-    </Box>
+    </Flex>
   );
 };
 

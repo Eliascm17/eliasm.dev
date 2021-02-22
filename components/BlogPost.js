@@ -20,7 +20,7 @@ const BlogPost = ({ title, summary, id }) => {
   return (
     <Link href={`/blog/${id}`}>
       <a>
-        <Box mb={6} w={[300, 400, 600, 800]}>
+        <Box mb={6} w={['300px', '400px', '600px', '800px']} p={10}>
           <motion.div
             whileHover={{
               scale: 1.03,
@@ -37,14 +37,14 @@ const BlogPost = ({ title, summary, id }) => {
               <Stack>
                 <Heading
                   as="h4"
-                  size="3xl"
+                  fontSize={['2xl', '3xl', '4xl']}
                   fontWeight="bold"
                   mb={4}
                   letterSpacing="tighter"
                 >
                   {title}
                 </Heading>
-                <Text fontSize="xl">{summary}</Text>
+                <Text fontSize={['md', 'lg', 'xl']}>{summary}</Text>
               </Stack>
             </Flex>
           </motion.div>

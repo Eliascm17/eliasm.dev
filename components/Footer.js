@@ -9,7 +9,7 @@ const Footer = () => (
     justifyContent="space-around"
     alignSelf="center"
     align="end"
-    maxW={['200px', '500px']}
+    maxW={['200px', '300px', '350px', '400px']}
     w="100%"
     my={6}
   >
@@ -70,7 +70,7 @@ const Footer = () => (
         variant="ghost"
       />
     </Link>
-    <Link href="mailto:app@eliasm.dev" title="Email" isExternal>
+    <Link href="mailto:Elias.cmoreno17@gmail.com" title="Email" isExternal>
       <EmailIcon
         aria-label="Email"
         icon="mail"
