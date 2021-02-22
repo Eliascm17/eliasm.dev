@@ -37,6 +37,7 @@ const CodeBlock = ({ children, className }) => {
               ...style,
               padding: '20px',
               overflow: 'scroll',
+              overflowInline: 'visible',
               textAlign: 'left'
             }}
           >
