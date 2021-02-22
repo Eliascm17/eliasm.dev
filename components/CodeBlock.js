@@ -21,7 +21,7 @@ const CodeBlock = ({ children, className }) => {
   return (
     <Flex
       my={4}
-      maxWidth={['325px', '460px', '600px', '700px']}
+      maxWidth={['350px', '460px', '600px', '700px']}
       justify="center"
     >
       <Highlight
