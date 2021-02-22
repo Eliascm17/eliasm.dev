@@ -19,7 +19,7 @@ const CodeBlock = ({ children, className }) => {
   };
 
   return (
-    <Box
+    <Flex
       my={4}
       maxWidth={['350px', '460px', '600px', '700px']}
       justify="center"
@@ -38,7 +38,8 @@ const CodeBlock = ({ children, className }) => {
               padding: '20px',
               overflow: 'scroll',
               overflowInline: 'visible',
-              textAlign: 'left'
+              textAlign: 'left',
+              WebkitOverflowScrolling: 'touch'
             }}
           >
             {tokens.map((line, i) => (
@@ -51,7 +52,7 @@ const CodeBlock = ({ children, className }) => {
           </pre>
         )}
       </Highlight>
-    </Box>
+    </Flex>
   );
 };
 
