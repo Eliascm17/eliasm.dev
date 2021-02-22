@@ -27,13 +27,18 @@ const CodeBlock = ({ children, className }) => {
       <Highlight
         {...defaultProps}
         theme={code[colorMode]}
-        code={children}
+        code={children.trim()}
         language={language}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
             className={className}
-            style={{ ...style, padding: '20px', overflow: 'scroll' }}
+            style={{
+              ...style,
+              padding: '20px',
+              overflow: 'scroll',
+              textAlign: 'left'
+            }}
           >
             {tokens.map((line, i) => (
               <div key={i} {...getLineProps({ line, key: i })}>
