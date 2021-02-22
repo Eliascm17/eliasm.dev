@@ -52,16 +52,16 @@ const Container = ({ children, ...customMeta }) => {
             content={`https://Eliasm.dev${router.asPath}`}
           />
           <link rel="canonical" href={`https://Eliasm.dev${router.asPath}`} />
-          <meta name="twitter:image" content={meta.image} />
-          <meta name="twitter:card" content="summary" key="twcard" />
-          <meta name="twitter:creator" content="@Eliascm17" key="twhandle" />
-          <meta name="twitter:title" content={meta.title} />
-          <meta name="twitter:description" content={meta.description} />
           <meta property="og:type" content={meta.type} />
           <meta property="og:site_name" content="Elias Moreno" />
           <meta property="og:description" content={meta.description} />
           <meta property="og:title" content={meta.title} />
           <meta property="og:image" content={meta.image} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@Eliascm17" />
+          <meta name="twitter:title" content={meta.title} />
+          <meta name="twitter:description" content={meta.description} />
+          <meta name="twitter:image" content={meta.image} />
           {meta.date && (
             <meta property="article:published_time" content={meta.date} />
           )}
