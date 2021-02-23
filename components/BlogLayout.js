@@ -14,10 +14,11 @@ const BlogLayout = ({ children, frontMatter }) => {
       <Flex
         flexDirection="column"
         alignSelf="center"
-        m="0 auto 4rem auto"
-        maxWidth="700px"
+        m="0 auto 2rem auto"
+        maxWidth={'700px'}
+        w={[250, 380, 500, 660, 700]}
       >
-        <Text fontSize={['3xl', '4xl', '5xl', '6xl', '6xl']} fontWeight="bold">
+        <Text fontSize={['3xl', '3xl', '4xl', '6xl']} fontWeight="bold">
           {frontMatter.title}
         </Text>
         <Flex
