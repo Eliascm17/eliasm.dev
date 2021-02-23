@@ -35,8 +35,7 @@ const Container = ({ children, ...customMeta }) => {
         alignItems="center"
         maxWidth="900px"
         width="100%"
-        bgColor={bgColor[colorMode]}
-        color={bgColor[colorMode]}
+        bg={bgColor[colorMode]}
         as="nav"
         p={8}
         mt={[0, 8]}
@@ -57,22 +56,21 @@ const Container = ({ children, ...customMeta }) => {
           <meta property="og:description" content={meta.description} />
           <meta property="og:title" content={meta.title} />
           <meta property="og:image" content={meta.image} />
+          <meta name="twitter:image" content={meta.image} />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@Eliascm17" />
           <meta name="twitter:title" content={meta.title} />
           <meta name="twitter:description" content={meta.description} />
-          <meta name="twitter:image" content={meta.image} />
           {meta.date && (
             <meta property="article:published_time" content={meta.date} />
           )}
         </Head>
         <IconButton
           aria-label="Toggle dark mode"
-          bgColor={buttonBgColor[colorMode]}
-          color={primarytextColor[colorMode]}
-          icon={buttonIcon[colorMode]}
+          bg={colorMode === 'dark' ? 'gray.700' : 'gray.100'}
+          icon={colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}
           onClick={toggleColorMode}
-          _hover={{ bgColor: buttonHover[colorMode] }}
+          _hover={{ bgColor: colorMode === 'dark' ? 'gray.600' : 'gray.300' }}
         />
         <Flex>
           <Box>
@@ -87,14 +85,7 @@ const Container = ({ children, ...customMeta }) => {
           </Box>
         </Flex>
       </StickyNav>
-      <Flex
-        as="main"
-        justifyContent="center"
-        flexDirection="column"
-        bg={bgColor[colorMode]}
-        color={primarytextColor[colorMode]}
-        px={8}
-      >
+      <Flex as="main" justifyContent="center" flexDirection="column" px={8}>
         {children}
         <Footer />
       </Flex>
@@ -106,25 +97,10 @@ export default Container;
 
 const bgColor = {
   light: 'white',
-  dark: 'gray.800'
+  dark: 'gray.900'
 };
 
 const primarytextColor = {
   light: 'black',
   dark: 'white'
-};
-
-const buttonBgColor = {
-  light: 'gray.100',
-  dark: 'gray.700'
-};
-
-const buttonIcon = {
-  light: <MoonIcon />,
-  dark: <SunIcon />
-};
-
-const buttonHover = {
-  light: 'gray.300',
-  dark: 'gray.600'
 };

@@ -35,7 +35,6 @@ const prismBaseTheme = css`
     overflow: auto;
     min-width: 100%;
     font-size: 0.9rem;
-    white-space: nowrap;
   }
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {
