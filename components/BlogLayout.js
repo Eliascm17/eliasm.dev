@@ -18,7 +18,7 @@ const BlogLayout = ({ children, frontMatter }) => {
         maxWidth={'700px'}
         w={[300, 380, 500, 660, 700]}
       >
-        <Text fontSize={['3xl', '3xl', '4xl', '6xl']} fontWeight="bold">
+        <Text fontSize={['2xl', '3xl', '4xl', '6xl']} fontWeight="bold">
           {frontMatter.title}
         </Text>
         <Flex
