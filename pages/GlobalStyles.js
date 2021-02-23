@@ -9,7 +9,7 @@ export const GlobalStyle = ({ children }) => {
   return (
     <>
       <CSSReset />
-      {/* <Global
+      <Global
         styles={css`
           ${colorMode === 'light' ? prismLightTheme : prismDarkTheme};
 
@@ -30,7 +30,7 @@ export const GlobalStyle = ({ children }) => {
             background: ${colorMode === 'light' ? 'white' : '#171923'};
           }
         `}
-      /> */}
+      />
       {children}
     </>
   );
