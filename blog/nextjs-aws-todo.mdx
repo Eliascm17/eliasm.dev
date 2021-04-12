@@ -1,0 +1,334 @@
+---
+title: Next.js + AWS Amplify + GraphQL Todo app ✅
+timestamp: 12 April 2021 03:00:00 CST
+summary: A quick intro into AWS Amplify's CLI/API by building a super quick and easy Todo app using Next.js, AWS Amplify, GraphQL, and TailwindCSS.
+image: https://eliasm.dev/static/images/nextjs-aws-todo/banner.png
+---
+
+In this blog post we are gonna walk through a simple and easy way to get started with Next.js and AWS amplify!
+
+Credits to Nader Dabit for doing this in his book Full Stack Serverless which I definitely recommend everyone check out to understand Full Stack web development using AWS. In his book he does this example in CRA but I'm gonna be using Next.js with my own little spin on it.
+
+# Setup
+
+We are gonna get started by initializing a new Next project on our local machine.
+
+```bash
+~ npx create-next-app nextjs-aws-todo
+~ cd nextjs-aws-todo
+~ yarn add aws-amplify uuid
+```
+
+You could also create and deploy a new project through Vercel's dashboard in literal minutes and clone it from your own repository. It's really great, Vercel does it all for you.
+
+Note: You'll also want to make sure you have the amplify CLI installed. You can follow this tutorial [here](https://docs.amplify.aws/cli/start/install) through Amplify's docs to walk you through it.
+
+Next you'll want to initialize that the amplify project in your root of the directory:
+
+```bash
+~ amplify init
+? Enter a name for the project: nextjsTodo
+? Enter a name for the environment: dev
+? Choose your default editor: <your editor of choice>
+? Choose the type of app that you're building: javascript
+? What javascript framework are you using: react
+? Source Directory Path: src
+? Distribution Directory Path: build
+? Build Command: npm run-script build
+? Start Command: npm run-script start
+? Do you want to use an AWS profile? Y
+? Select the authentication method you want to use: AWS profile
+? Please choose the profile you want to use <your choice of profile>
+```
+
+Next we are gonna add the GraphQL API
+
+```bash
+~ amplify add api
+? Please select from one of the below mentioned services: GraphQL
+? Provide API name: nextjstodo
+? Choose the default authorization type for the API API key
+? Enter a description for the API key: public
+? After how many days from now the API key should expire (1-365): 365
+? Do you want to configure advanced settings for the GraphQL API No, I am done.
+? Do you have an annotated GraphQL schema? No
+? Choose a schema template: Single object with fields (e.g., “Todo” with ID, name, description)
+? Do you want to edit the schema now? Yes
+```
+
+After that a file named 'schema.graphql' should pop up in our VSCode terminal (assuming you're using VSCode)
+
+From here we'll want to define the default schema for what we want out GraphQL API to look like and how it's gonna be stored.
+
+```graphql
+# schema.graphql
+
+type Todo @model {
+  id: ID!
+  clientId: ID
+  name: String!
+  description: String
+  completed: Boolean
+}
+```
+
+Now we'll push all of our changes using "amplify push"
+
+```bash
+~ amplify push
+✔ Successfully pulled backend environment dev from the cloud.
+
+Current Environment: dev
+
+| Category | Resource name | Operation | Provider plugin   |
+| -------- | ------------- | --------- | ----------------- |
+| Api      | nextjstodo    | Create    | awscloudformation |
+? Are you sure you want to continue? Yes
+? Do you want to generate code for your newly created GraphQL API Yes
+? Choose the code generation language target javascript
+? Enter the file name pattern of graphql queries, mutations and subscriptions src/graphql/**/*.js
+? Do you want to generate/update all possible GraphQL operations - queries, mutations and subscriptions Yes
+? Enter maximum statement depth [increase from default if your schema is deeply nested] 2
+```
+
+After that finishes running we are all set up and now we can test our app be entering "amplify console api" in our terminal and then selecting "GraphQ" in our terminal.
+
+Now we are able to verify that our newly deployed GraphQL endpoint has been setup correctly. We can do this by entering this into our console like this:
+
+```graphql
+mutation createTodo {
+      createtodo(input: {
+        name: "Go to the grocery store 🥦"
+        description: "Grocery list: broccoli, carrots, celery, ..."
+        completed: false
+      }) {
+        id name description completed
+} }
+
+...
+
+{
+  "data": {
+    "createTodo": {
+      "id": "f5439d5f-3a16-46e3-a267-41739a852130",
+      "name": "Go to the grocery store 🥦",
+      "description": "Grocery list: broccoli, carrots, celery, ...",
+      "completed": false
+    }
+ }
+```
+
+![create todo console]]()
+
+The beautiful thing about GraphQL is that if gives us exactly as much or as little that we ask for. Now that we have created a Todo entry now we can query it in that same console and get this expected result:
+
+```graphql
+query listTodos {
+  listTodos {
+    items {
+      id
+      name
+      description
+      completed
+    }
+  }
+}
+
+...
+
+{
+  "data": {
+    "listTodos": {
+      "items": [
+        {
+          "id": "f5439d5f-3a16-46e3-a267-41739a852130",
+          "name": "Go to the grocery store 🥦",
+          "description": "Grocery list: broccoli, carrots, celery, ...",
+          "completed": false
+        }
+      ]
+    }
+  }
+}
+```
+
+# Building the Next Application.
+
+Last thing that we are going to add to our project is TailwindCSS
+
+```graphql
+~ yarn add -D tailwindcss@latest postcss@latest autoprefixer@latest
+~ npx tailwindcss init -p
+```
+
+Note: If you need help walking through the full setup you can see TailwindCSS's full [documentation](https://tailwindcss.com/docs/guides/nextjs) on setting up with a Next.js project
+
+# Let's Build!
+
+From here the amplify CLI has automatically created mutations, queries, and subscriptions based on of our previously defined schema. From here we can easily add these into our app to make our simple todo app.
+
+In our _index.js_ file we are going to add all of the imports and configurations that we are going to need to for this app:
+
+```graphql
+import Amplify, { API } from "aws-amplify";
+import { useState, useEffect } from "react";
+import { v4 as uuid } from "uuid";
+import Todo from "../components/Todo";
+import config from "../src/aws-exports";
+import { createTodo as CreateTodo } from "../src/graphql/mutations";
+import { listTodos as ListTodos } from "../src/graphql/queries";
+import { onCreateTodo, onDeleteTodo } from "../src/graphql/subscriptions";
+
+const CLIENT_ID = uuid();
+
+Amplify.configure(config);
+```
+
+## Get Todos
+
+Because we are using next.js we are able to use some of its powerful features. Instead of creating an isolated fetchTodos() function, we are going to use getStaticProps() that is native to the Next.js framework. In this funtion we are going to use one of the predefined queries in '../src/graphql/queries' to grab all of our todos and pass them as props to our function that will render those in our app
+
+```jsx
+//index.js
+
+export async function getStaticProps() {
+  const todoData = await API.graphql({
+    query: ListTodos,
+  });
+
+  return {
+    props: {
+      todos: todoData.data.listTodos.items,
+    },
+    revalidate: 1, // Every second revalidate static props
+  };
+}
+
+export default function Home({ todos }) {
+  const [listOfTodos, setListOfTodos] = useState(todos);
+
+	return ();
+
+}
+```
+
+## Create Todo
+
+For this action we are simply going to create an isolated function that will run when we create a new todo. This function will simply accept the todo and description values coming from the two input lines from our UI. We then create an object with those values in the shape of our schema that we defined for each Todo and query the GraphQL endpoint and console.log when it successfully gets created.
+
+```jsx
+//index.js
+
+const createTodo = async (todo, description) => {
+  const newTodo = {
+    name: todo,
+    description,
+    clientId: CLIENT_ID,
+    completed: false,
+    id: uuid()
+  };
+
+  try {
+    await API.graphql({
+      query: CreateTodo,
+      variables: { input: newTodo }
+    });
+    console.log('successfully created note!');
+  } catch (err) {
+    console.log('error: ', err);
+  }
+};
+```
+
+## Update Todo
+
+This action was one of my most favorite parts of building this app. The extent that we are going to "update" one of our todos is to mark if it has been completed or not. For this we are in a separate component that we have for each todo. In this component I am tracking the state of each todo entry and whether or not is has been marked as completed or not using the useState hook. Using the UpdateTodo mutation, we can set a specific todo marked as completed by the use of its unique id.
+
+```jsx
+//Todo.js
+
+const [finished, setFinished] = useState(completed);
+
+...
+
+const updateTodoCompleted = async (id) => {
+    try {
+      await API.graphql({
+        query: UpdateTodo,
+        variables: {
+          input: { id: id, completed: !finished },
+        },
+      });
+      console.log("note successfully updated!");
+    } catch (err) {
+      console.log("error: ", err);
+    }
+  };
+```
+
+## Delete Todo
+
+This part was a little tricky with understanding how to update state after performing the action but I figured it out. Similarly to the other queries we are going to use the DeleteTodo mutation to delete a todo based on its unique id.
+
+```jsx
+//Todo.js
+
+const deleteTodo = async (id) => {
+  try {
+    await API.graphql({
+      query: DeleteTodo,
+      variables: { input: { id } }
+    });
+    console.log('successfully deleted note!');
+  } catch (err) {
+    console.log({ err });
+  }
+};
+```
+
+## Subscriptions
+
+Subscriptions are super cool! We can use subscriptions in our app to get live updates to our data so when we create or delete a todo the user will be able to see that in the UI. We can listed to events such as onCreateTodo and onDeleteTodo to listen for when certain mutations happen in our database and update our UI for our user.
+
+Back in our _index.js_ we are going to use the power of the useEffect hook to listen to those certain events and update our state accordingly.
+
+```jsx
+//index.js
+
+useEffect(() => {
+  // on create subscription
+  const subscriptionCreateNote = API.graphql({
+    query: onCreateTodo
+  }).subscribe({
+    next: (todoData) => {
+      const todo = todoData.value.data.onCreateTodo;
+      setListOfTodos((list) => [...list, { ...todo }]);
+      if (CLIENT_ID === todo.clientId) return;
+    }
+  });
+
+  //on delete subscription
+  const subscriptionDeleteNote = API.graphql({
+    query: onDeleteTodo
+  }).subscribe({
+    next: (todoData) => {
+      const todo = todoData.value.data.onDeleteTodo;
+      setListOfTodos(listOfTodos.filter((list) => list.id !== todo.id));
+      if (CLIENT_ID === todo.clientId) return;
+    }
+  });
+
+  return () => {
+    subscriptionCreateNote.unsubscribe();
+    subscriptionDeleteNote.unsubscribe();
+  };
+}, []);
+```
+
+# Conclusion
+
+This is just one of the many services that AWS provides. I hope you gained a better understanding of how to execute CRUD operations and find a way to implement AWS amplify into your own projects!
+
+- Be sure to check out my GitHub repo [here](https://github.com/Eliascm17/aws-todo-app)
+- [Here](https://nextjs-aws-todo.vercel.app/) is the deployed version of this tutorial
+- Also be sure to check out Nader Dabit's book Full Stack Serverless [here](https://www.amazon.com/Full-Stack-Serverless-Application-Development/dp/1492059897)
