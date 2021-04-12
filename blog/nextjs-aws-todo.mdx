@@ -9,9 +9,7 @@ image: https://eliasm.dev/static/images/nextjs-aws-todo/banner.png
 
 > A quick intro into AWS Amplify's CLI/API by building a super quick and easy Todo app using Next.js, AWS Amplify, GraphQL, and TailwindCSS.
 
-In this blog post we are gonna walk through a simple and easy way to get started with Next.js and AWS amplify!
-
-Credits to Nader Dabit for doing this in his book Full Stack Serverless which I definitely recommend everyone check out to understand Full Stack web development using AWS. In his book he does this example in CRA but I'm gonna be using Next.js with my own little spin on it.
+Credits to [Nader Dabit](https://twitter.com/dabit3?s=20) for doing this example in his book [Full Stack Serverless](https://www.amazon.com/Full-Stack-Serverless-Application-Development/dp/1492059897). This book is a great way to get started with all things AWS and all that it has to offer. I recommend everyone check it out to understand Full Stack serverless web development using AWS. In his book he does this example in CRA but I'm gonna be using Next.js with my own little spin on it.
 
 # Setup
 
@@ -23,11 +21,11 @@ We are gonna get started by initializing a new Next project on our local machine
 ~ yarn add aws-amplify uuid
 ```
 
-You could also create and deploy a new project through Vercel's dashboard in literal minutes and clone it from your own repository. It's really great, Vercel does it all for you.
+You could also create and deploy a new project through [Vercel's](https://vercel.com) dashboard in literal minutes and clone it from your own repository. It's really great, Vercel does it all for you.
 
-Note: You'll also want to make sure you have the amplify CLI installed. You can follow this tutorial [here](https://docs.amplify.aws/cli/start/install) through Amplify's docs to walk you through it.
+**Note:** You'll also want to make sure you have the amplify CLI installed. You can follow this tutorial [here](https://docs.amplify.aws/cli/start/install) through Amplify's docs to walk you through it.
 
-Next you'll want to initialize that the amplify project in your root of the directory:
+Next you'll want to initialize that the amplify project in your root directory of your project:
 
 ```bash
 ~ amplify init
@@ -60,7 +58,7 @@ Next we are gonna add the GraphQL API
 ? Do you want to edit the schema now? Yes
 ```
 
-After that a file named 'schema.graphql' should pop up in our VSCode terminal (assuming you're using VSCode)
+After that a file named _schema.graphql_ should pop up in our VSCode terminal (assuming you're using VSCode)
 
 From here we'll want to define the default schema for what we want out GraphQL API to look like and how it's gonna be stored.
 
@@ -76,7 +74,7 @@ type Todo @model {
 }
 ```
 
-Now we'll push all of our changes using "amplify push"
+Now we'll push all of our changes using "amplify push" in our terminal
 
 ```bash
 ~ amplify push
@@ -95,36 +93,46 @@ Current Environment: dev
 ? Enter maximum statement depth [increase from default if your schema is deeply nested] 2
 ```
 
-After that finishes running we are all set up and now we can test our app be entering "amplify console api" in our terminal and then selecting "GraphQ" in our terminal.
+After that finishes running we are all set up and now we can test our app be entering "amplify console api" in our terminal and then selecting "GraphQL" in our terminal.
 
 Now we are able to verify that our newly deployed GraphQL endpoint has been setup correctly. We can do this by entering this into our console like this:
 
 ```graphql
 mutation createTodo {
-      createtodo(input: {
-        name: "Go to the grocery store 🥦"
-        description: "Grocery list: broccoli, carrots, celery, ..."
-        completed: false
-      }) {
-        id name description completed
-} }
+  createTodo(
+    input: {
+      name: "Go to the grocery store 🥦"
+      description: "Grocery list: broccoli, carrots, celery, ..."
+      completed: false
+    }
+  ) {
+    id
+    name
+    description
+    completed
+  }
+}
+```
 
-...
+It then outputs the following:
 
+```graphql
 {
   "data": {
     "createTodo": {
-      "id": "f5439d5f-3a16-46e3-a267-41739a852130",
+      "id": "e2d865a6-9853-4bba-b0a4-06ebed541494",
       "name": "Go to the grocery store 🥦",
       "description": "Grocery list: broccoli, carrots, celery, ...",
       "completed": false
     }
- }
+}
 ```
 
-![create todo console]]()
+Here is a screenshot of what that should look like:
 
-The beautiful thing about GraphQL is that if gives us exactly as much or as little that we ask for. Now that we have created a Todo entry now we can query it in that same console and get this expected result:
+![create todo in console](https://eliasm.dev/static/images/nextjs-aws-todo/createTodo-console.png)
+
+The beautiful thing about GraphQL is that It gives us exactly as much or as little of it that we ask for when touching the endpoint. Now that we have created a Todo entry now we can query it in that same console and get this expected result:
 
 ```graphql
 query listTodos {
@@ -137,15 +145,19 @@ query listTodos {
     }
   }
 }
+```
 
-...
+Outputs:
+
+```graphql
 
 {
   "data": {
     "listTodos": {
       "items": [
+        ...
         {
-          "id": "f5439d5f-3a16-46e3-a267-41739a852130",
+          "id": "e2d865a6-9853-4bba-b0a4-06ebed541494",
           "name": "Go to the grocery store 🥦",
           "description": "Grocery list: broccoli, carrots, celery, ...",
           "completed": false
@@ -156,24 +168,23 @@ query listTodos {
 }
 ```
 
-# Building the Next Application.
+![list todos in console](https://eliasm.dev/static/images/nextjs-aws-todo/listTodos-console.png)
 
-Last thing that we are going to add to our project is TailwindCSS
+# Building the Application.
 
-```graphql
-~ yarn add -D tailwindcss@latest postcss@latest autoprefixer@latest
-~ npx tailwindcss init -p
-```
+Last thing that we are going to add to our project is TailwindCSS. Now I decided to use [TailwindCSS](https://tailwindcss.com) for this app but you can totally use whatever you want.
 
 Note: If you need help walking through the full setup you can see TailwindCSS's full [documentation](https://tailwindcss.com/docs/guides/nextjs) on setting up with a Next.js project
 
 # Let's Build!
 
-From here the amplify CLI has automatically created mutations, queries, and subscriptions based on of our previously defined schema. From here we can easily add these into our app to make our simple todo app.
+From here the amplify CLI has automatically created mutation, query, and subscription operations based on our previously defined schema. From here we can easily add these into our app to make our simple todo app.
 
 In our _index.js_ file we are going to add all of the imports and configurations that we are going to need to for this app:
 
 ```graphql
+//index.js
+
 import Amplify, { API } from "aws-amplify";
 import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
@@ -190,7 +201,7 @@ Amplify.configure(config);
 
 ## Get Todos
 
-Because we are using next.js we are able to use some of its powerful features. Instead of creating an isolated fetchTodos() function, we are going to use getStaticProps() that is native to the Next.js framework. In this funtion we are going to use one of the predefined queries in '../src/graphql/queries' to grab all of our todos and pass them as props to our function that will render those in our app
+Because we are using Next.js we are able to use some of its powerful features. Instead of creating an isolated fetchTodos() function that'll run inside of a useEffect hook, we are going to use the getStaticProps() function that is native to the Next.js framework. In this function we are going to use one of the predefined queries in '../src/graphql/queries' to grab all of our todos and pass them in as props to our function that will render those in our app
 
 ```jsx
 //index.js
@@ -211,7 +222,7 @@ export async function getStaticProps() {
 export default function Home({ todos }) {
   const [listOfTodos, setListOfTodos] = useState(todos);
 
-	return ();
+	...
 
 }
 ```
@@ -292,7 +303,7 @@ const deleteTodo = async (id) => {
 
 ## Subscriptions
 
-Subscriptions are super cool! We can use subscriptions in our app to get live updates to our data so when we create or delete a todo the user will be able to see that in the UI. We can listed to events such as onCreateTodo and onDeleteTodo to listen for when certain mutations happen in our database and update our UI for our user.
+Subscriptions are super cool! We can use subscriptions in our app to get live updates to our data so when we create or delete a todo the user will be able to see that in the UI. We can listen to events such as onCreateTodo and onDeleteTodo to listen for when certain mutations happen in our database and update our UI for our user.
 
 Back in our _index.js_ we are going to use the power of the useEffect hook to listen to those certain events and update our state accordingly.
 
@@ -331,8 +342,14 @@ useEffect(() => {
 
 # Conclusion
 
-This is just one of the many services that AWS provides. I hope you gained a better understanding of how to execute CRUD operations and find a way to implement AWS amplify into your own projects!
+Amplify is just one of the many services that AWS provides. I hope you gained a better understanding of how to execute CRUD operations and find a way to implement AWS amplify into your own projects!
 
-- Be sure to check out my GitHub repo [here](https://github.com/Eliascm17/aws-todo-app)
+### Finished Product!
+
+Here is how my app turned out:
+
+![create todo console](https://eliasm.dev/static/images/nextjs-aws-todo/finished-app.png)
+
+- Be sure to check out the GitHub repo with all of the code [here](https://github.com/Eliascm17/aws-todo-app)
 - [Here](https://nextjs-aws-todo.vercel.app/) is the deployed version of this tutorial
 - Also be sure to check out Nader Dabit's book Full Stack Serverless [here](https://www.amazon.com/Full-Stack-Serverless-Application-Development/dp/1492059897)
