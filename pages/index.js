@@ -36,10 +36,11 @@ export default function Home() {
     'react',
     'nextjs',
     'javascript',
-    'firebase',
     'graphql',
+    'firebase',
     'aws-amplify',
-    'adobexd'
+    'adobexd',
+    'vercel'
   ];
 
   return (
@@ -87,7 +88,8 @@ export default function Home() {
               'javascript',
               'nextjs',
               'graphql',
-              'aws-amplify'
+              'aws-amplify',
+              'vercel'
             ]}
           />
           <Project

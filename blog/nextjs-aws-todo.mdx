@@ -178,7 +178,7 @@ Note: If you need help walking through the full setup you can see TailwindCSS's 
 
 # Let's Build!
 
-From here the amplify CLI has automatically created mutation, query, and subscription operations based on our previously defined schema. From here we can easily add these into our app to make our simple todo app.
+From here the amplify CLI has automatically created mutations and queries for us based on our previously defined schema. From here we can easily add these into our app to make our simple todo app.
 
 In our _index.js_ file we are going to add all of the imports and configurations that we are going to need to for this app:
 
@@ -186,13 +186,15 @@ In our _index.js_ file we are going to add all of the imports and configurations
 //index.js
 
 import Amplify, { API } from "aws-amplify";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import Todo from "../components/Todo";
 import config from "../src/aws-exports";
-import { createTodo as CreateTodo } from "../src/graphql/mutations";
+import {
+  createTodo as CreateTodo,
+  deleteTodo as DeleteTodo,
+} from "../src/graphql/mutations";
 import { listTodos as ListTodos } from "../src/graphql/queries";
-import { onCreateTodo, onDeleteTodo } from "../src/graphql/subscriptions";
 
 const CLIENT_ID = uuid();
 
@@ -243,6 +245,8 @@ const createTodo = async (todo, description) => {
     id: uuid()
   };
 
+  setListOfTodos((list) => [...list, { ...newTodo }]);
+
   try {
     await API.graphql({
       query: CreateTodo,
@@ -289,6 +293,13 @@ This part was a little tricky with understanding how to update state after perfo
 //Todo.js
 
 const deleteTodo = async (id) => {
+  const index = listOfTodos.findIndex((t) => t.id === id);
+  const todos = [
+    ...listOfTodos.slice(0, index),
+    ...listOfTodos.slice(index + 1)
+  ];
+  setListOfTodos(todos);
+
   try {
     await API.graphql({
       query: DeleteTodo,
@@ -299,45 +310,6 @@ const deleteTodo = async (id) => {
     console.log({ err });
   }
 };
-```
-
-## Subscriptions
-
-Subscriptions are super cool! We can use subscriptions in our app to get live updates to our data so when we create or delete a todo the user will be able to see that in the UI. We can listen to events such as onCreateTodo and onDeleteTodo to listen for when certain mutations happen in our database and update our UI for our user.
-
-Back in our _index.js_ we are going to use the power of the useEffect hook to listen to those certain events and update our state accordingly.
-
-```jsx
-//index.js
-
-useEffect(() => {
-  // on create subscription
-  const subscriptionCreateNote = API.graphql({
-    query: onCreateTodo
-  }).subscribe({
-    next: (todoData) => {
-      const todo = todoData.value.data.onCreateTodo;
-      setListOfTodos((list) => [...list, { ...todo }]);
-      if (CLIENT_ID === todo.clientId) return;
-    }
-  });
-
-  //on delete subscription
-  const subscriptionDeleteNote = API.graphql({
-    query: onDeleteTodo
-  }).subscribe({
-    next: (todoData) => {
-      const todo = todoData.value.data.onDeleteTodo;
-      setListOfTodos(listOfTodos.filter((list) => list.id !== todo.id));
-      if (CLIENT_ID === todo.clientId) return;
-    }
-  });
-
-  return () => {
-    subscriptionCreateNote.unsubscribe();
-    subscriptionDeleteNote.unsubscribe();
-  };
-}, []);
 ```
 
 # Conclusion

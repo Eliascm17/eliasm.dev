@@ -17,6 +17,7 @@ import {
   Spotify,
   Twitter,
   X,
+  Vercel,
   TailwindCSS
 } from '@/styles/index';
 
@@ -59,7 +60,9 @@ const Icon = ({ name, boxSize, ...props }) => {
     case 'twitter':
       return <Twitter {...props} boxSize={boxSize} />;
     case 'x':
-      return <X boxSize={boxSize} />;
+      return <X {...props} boxSize={boxSize} />;
+    case 'vercel':
+      return <Vercel {...props} boxSize={boxSize} />;
     default:
       return null;
   }

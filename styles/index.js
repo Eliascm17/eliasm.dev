@@ -17,3 +17,4 @@ export { Spotify } from './spotify';
 export { TailwindCSS } from './tailwind';
 export { Twitter } from './twitter';
 export { X } from './x';
+export { Vercel } from './vercel';
