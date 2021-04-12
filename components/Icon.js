@@ -1,3 +1,4 @@
+import { AWSAmplify } from '@/styles/aws-amplify';
 import {
   Adobexd,
   Check,
@@ -15,13 +16,16 @@ import {
   Samsung,
   Spotify,
   Twitter,
-  X
+  X,
+  TailwindCSS
 } from '@/styles/index';
 
 const Icon = ({ name, boxSize, ...props }) => {
   switch (name) {
     case 'adobexd':
       return <Adobexd {...props} boxSize={boxSize} />;
+    case 'aws-amplify':
+      return <AWSAmplify {...props} boxSize={boxSize} />;
     case 'check':
       return <Check {...props} boxSize={boxSize} />;
     case 'chakra':
@@ -50,6 +54,8 @@ const Icon = ({ name, boxSize, ...props }) => {
       return <Samsung {...props} boxSize={boxSize} />;
     case 'spotify':
       return <Spotify {...props} boxSize={boxSize} />;
+    case 'tailwind':
+      return <TailwindCSS {...props} boxSize={boxSize} />;
     case 'twitter':
       return <Twitter {...props} boxSize={boxSize} />;
     case 'x':

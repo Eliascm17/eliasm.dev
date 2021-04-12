@@ -32,7 +32,15 @@ export default function Home() {
     dark: 'gray.900'
   };
 
-  const favorites = ['react', 'nextjs', 'javascript', 'firebase', 'adobexd'];
+  const favorites = [
+    'react',
+    'nextjs',
+    'javascript',
+    'firebase',
+    'graphql',
+    'aws-amplify',
+    'adobexd'
+  ];
 
   return (
     <Container>
@@ -71,10 +79,16 @@ export default function Home() {
             Projects
           </Heading>
           <Project
-            title="Eliasm.dev"
-            description="Literally the site you're on right now!!"
-            href="https://github.com/Eliascm17/Eliasm.dev"
-            iconlist={['react', 'javascript']}
+            title="Next.js + AWS Amplify + GraphQL + TailwindCSS Todo app"
+            description="Todo app using Next.js, AWS Amplify, GraphQL, and TailwindCSS."
+            href="https://nextjs-aws-todo.vercel.app/"
+            iconlist={[
+              'react',
+              'javascript',
+              'nextjs',
+              'graphql',
+              'aws-amplify'
+            ]}
           />
           <Project
             title="Athena - Senior Capstone (CS 4366)"

@@ -53,7 +53,7 @@ const Project = ({ title, description, href, iconlist }) => {
                 as="h4"
                 size="md"
                 fontWeight="bold"
-                mb={4}
+                mb={2}
                 letterSpacing="tighter"
               >
                 {title}

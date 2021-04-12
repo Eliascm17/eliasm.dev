@@ -1,4 +1,5 @@
 export { Adobexd } from './adobexd';
+export { AWSAmplify } from './aws-amplify';
 export { Check } from './check';
 export { Chakra } from './chakra';
 export { Firebase } from './firebase';
@@ -13,5 +14,6 @@ export { React } from './react';
 export { Resume } from './resume';
 export { Samsung } from './samsung';
 export { Spotify } from './spotify';
+export { TailwindCSS } from './tailwind';
 export { Twitter } from './twitter';
 export { X } from './x';
