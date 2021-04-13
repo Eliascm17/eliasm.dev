@@ -69,6 +69,17 @@ export default function Home() {
           <Text color={secondaryTextColor[colorMode]}>
             Software Engineer at Samsung Austin Semiconductors
           </Text>
+          <Text mt={4} color={secondaryTextColor[colorMode]}>
+            Click{' '}
+            <Link
+              href="https://eliascm17.github.io/Resume/resume.pdf"
+              title="resume"
+              isExternal
+            >
+              here
+            </Link>{' '}
+            for my resume 😄
+          </Text>
         </Flex>
         <Flex
           flexDirection="column"
