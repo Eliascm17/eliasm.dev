@@ -67,7 +67,7 @@ export default function Home() {
             Hi, I'm Elias 👨🏾‍💻
           </Heading>
           <Text color={secondaryTextColor[colorMode]}>
-            Software Engineer at Samsung Austin Semiconductors
+            Site Reliability Engineer at Samsung Austin Semiconductors
           </Text>
           <Text mt={4} color={secondaryTextColor[colorMode]}>
             Click{' '}
@@ -134,9 +134,14 @@ export default function Home() {
             date="January 2021 - Present"
             logo="samsung"
             location="Austin, Texas"
-            role="Software Engineer"
+            role="Site Reliability Engineer"
             href="https://www.samsung.com/us/sas/"
-            description={<Text>Systems Development Engineer</Text>}
+            description={
+              <Text>
+                App owner that oversees and tests new releases of internal
+                tooling that goes out to users within the company
+              </Text>
+            }
           />
           <Experience
             company="Texas Tech University"
