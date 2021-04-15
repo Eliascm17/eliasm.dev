@@ -91,6 +91,18 @@ export default function Home() {
             Projects
           </Heading>
           <Project
+            title="Next.js + AWS Amplify + TailwindCSS Authentication Flow"
+            description="Authentication Flow using Next.js, AWS Amplify, and TailwindCSS."
+            href="https://amplify-next-auth.vercel.app/"
+            iconlist={[
+              'react',
+              'javascript',
+              'nextjs',
+              'aws-amplify',
+              'vercel'
+            ]}
+          />
+          <Project
             title="Next.js + AWS Amplify + GraphQL + TailwindCSS Todo app"
             description="Todo app using Next.js, AWS Amplify, GraphQL, and TailwindCSS."
             href="https://nextjs-aws-todo.vercel.app/"
