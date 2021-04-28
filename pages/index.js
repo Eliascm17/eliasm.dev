@@ -91,6 +91,12 @@ export default function Home() {
             Projects
           </Heading>
           <Project
+            title="Github Search Clone"
+            description="Clone of GitHub’s search page using GitHub APIs that displays relevant Repositories, Commits, and Users"
+            href="https://javascript-take-home.vercel.app/"
+            iconlist={['react', 'javascript', 'nextjs', 'tailwind', 'vercel']}
+          />
+          <Project
             title="Next.js + AWS Amplify + TailwindCSS Authentication Flow"
             description="Authentication Flow using Next.js, AWS Amplify, and TailwindCSS."
             href="https://amplify-next-auth.vercel.app/"
@@ -99,6 +105,7 @@ export default function Home() {
               'javascript',
               'nextjs',
               'aws-amplify',
+              'tailwind',
               'vercel'
             ]}
           />
@@ -112,6 +119,7 @@ export default function Home() {
               'nextjs',
               'graphql',
               'aws-amplify',
+              'tailwind',
               'vercel'
             ]}
           />
@@ -149,10 +157,14 @@ export default function Home() {
             role="Site Reliability Engineer"
             href="https://www.samsung.com/us/sas/"
             description={
-              <Text>
-                App owner that oversees and tests new releases of internal
-                tooling that goes out to users within the company
-              </Text>
+              <>
+                <Text>
+                  App owner that oversees and tests new releases of internal
+                  tooling that goes out to users within the company. As well as
+                  aid users with issues regarding internal app user interface
+                  whilst using various troubleshooting techniques
+                </Text>
+              </>
             }
           />
           <Experience
