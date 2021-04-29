@@ -1,22 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { Box, Flex, IconButton, useColorMode } from '@chakra-ui/react';
-import styled from '@emotion/styled';
 import Footer from './Footer';
+import { useTheme } from 'next-themes';
+import Icon from './Icon';
 
-const StickyNav = styled(Flex)`
-  z-index: 10;
-  top: 0;
-  backdrop-filter: saturate(180%) blur(20px);
-  transition: background-color 0.1 ease-in-out;
-`;
+// const StickyNav = styled(Flex)`
+//   z-index: 10;
+//   top: 0;
+//   backdrop-filter: saturate(180%) blur(20px);
+//   transition: background-color 0.1 ease-in-out;
+// `;
 
 const Container = ({ children, ...customMeta }) => {
+  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const { colorMode, toggleColorMode } = useColorMode();
   const router = useRouter();
 
   // After mounting, we have access to the theme
@@ -28,79 +27,54 @@ const Container = ({ children, ...customMeta }) => {
   };
 
   return (
-    <>
-      <StickyNav
-        flexDirection="row"
-        justifyContent="space-between"
-        alignItems="center"
-        maxWidth="900px"
-        width="100%"
-        bg={bgColor[colorMode]}
-        as="nav"
-        p={8}
-        mt={[0, 8]}
-        mb={8}
-        mx="auto"
-      >
-        <Head>
-          <title>{meta.title}</title>
-          <meta name="robots" content="follow, index" />
-          <meta content={meta.description} name="description" />
-          <meta
-            property="og:url"
-            content={`https://Eliasm.dev${router.asPath}`}
-          />
-          <link rel="canonical" href={`https://Eliasm.dev${router.asPath}`} />
-          <meta property="og:type" content={meta.type} />
-          <meta property="og:site_name" content="Elias Moreno" />
-          <meta property="og:description" content={meta.description} />
-          <meta property="og:title" content={meta.title} />
-          <meta property="og:image" content={meta.image} />
-          <meta name="twitter:image" content={meta.image} />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:site" content="@Eliascm17" />
-          <meta name="twitter:title" content={meta.title} />
-          <meta name="twitter:description" content={meta.description} />
-          {meta.date && (
-            <meta property="article:published_time" content={meta.date} />
-          )}
-        </Head>
-        <IconButton
-          aria-label="Toggle dark mode"
-          bg={colorMode === 'dark' ? 'gray.700' : 'gray.100'}
-          icon={colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}
-          onClick={toggleColorMode}
-          _hover={{ bgColor: colorMode === 'dark' ? 'gray.600' : 'gray.300' }}
+    <div>
+      <Head>
+        <title>{meta.title}</title>
+        <meta name="robots" content="follow, index" />
+        <meta content={meta.description} name="description" />
+        <meta
+          property="og:url"
+          content={`https://Eliasm.dev${router.asPath}`}
         />
-        <Flex>
-          <Box>
-            <NextLink href="/">
-              <a style={{ color: primarytextColor[colorMode] }}>Home</a>
-            </NextLink>
-          </Box>
-          <Box ml={4}>
-            <NextLink href="/blog">
-              <a style={{ color: primarytextColor[colorMode] }}>Blog</a>
-            </NextLink>
-          </Box>
-        </Flex>
-      </StickyNav>
-      <Flex as="main" justifyContent="center" flexDirection="column" px={8}>
-        {children}
-        <Footer />
-      </Flex>
-    </>
+        <link rel="canonical" href={`https://Eliasm.dev${router.asPath}`} />
+        <meta property="og:type" content={meta.type} />
+        <meta property="og:site_name" content="Elias Moreno" />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:image" content={meta.image} />
+        <meta name="twitter:image" content={meta.image} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@Eliascm17" />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        {meta.date && (
+          <meta property="article:published_time" content={meta.date} />
+        )}
+      </Head>
+      <nav className="flex sticky z-10 top-0 transition items-center justify-between px-8 pt-16">
+        <button
+          className="p-2 rounded-md focus:outline-none bg-button-light dark:bg-button-dark dark:stroke-current dark:text-button-light hover:bg-button-light-hover dark:hover:bg-button-dark-hover transition ease-in-out duration-200"
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+        >
+          {mounted && (
+            <Icon
+              className="w-5 h-5"
+              name={theme === 'dark' ? 'sun' : 'moon'}
+            />
+          )}
+        </button>
+        <div className="flex space-x-4 ">
+          <NextLink href="#">
+            <div>Home</div>
+          </NextLink>
+          <NextLink href="#">
+            <div>Blog</div>
+          </NextLink>
+        </div>
+      </nav>
+      <main>{children}</main>
+    </div>
   );
 };
 
 export default Container;
-
-const bgColor = {
-  light: 'white',
-  dark: 'gray.900'
-};
-
-const primarytextColor = {
-  light: 'black',
-  dark: 'white'
-};

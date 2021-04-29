@@ -1,8 +1,3 @@
-import { EmailIcon } from '@chakra-ui/icons';
-import { Box, Flex, IconButton, Link } from '@chakra-ui/react';
-import React from 'react';
-import { Github, LinkedIn, Resume, Spotify, Twitter } from '../styles';
-
 const Footer = () => (
   <Box
     display="flex"
