@@ -6,13 +6,6 @@ import Footer from './Footer';
 import { useTheme } from 'next-themes';
 import Icon from './Icon';
 
-// const StickyNav = styled(Flex)`
-//   z-index: 10;
-//   top: 0;
-//   backdrop-filter: saturate(180%) blur(20px);
-//   transition: background-color 0.1 ease-in-out;
-// `;
-
 const Container = ({ children, ...customMeta }) => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -64,15 +57,18 @@ const Container = ({ children, ...customMeta }) => {
           )}
         </button>
         <div className="flex space-x-4 ">
-          <NextLink href="#">
+          <NextLink href="/">
             <div>Home</div>
           </NextLink>
-          <NextLink href="#">
+          <NextLink href="/blog">
             <div>Blog</div>
           </NextLink>
         </div>
       </nav>
-      <main>{children}</main>
+      <main className="flex flex-col justify-center bg-white dark:bg-dark px-8">
+        {children}
+        <Footer />
+      </main>
     </div>
   );
 };

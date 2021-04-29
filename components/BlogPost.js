@@ -1,11 +1,3 @@
-import {
-  Flex,
-  Heading,
-  Box,
-  Stack,
-  Text,
-  useColorMode
-} from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 

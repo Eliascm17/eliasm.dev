@@ -1,5 +1,4 @@
 import React from 'react';
-import { Flex, Heading, Box, Text, useColorMode } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 

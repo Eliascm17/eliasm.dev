@@ -1,4 +1,3 @@
-import { Flex, Text, Image } from '@chakra-ui/react';
 import { parseISO, format } from 'date-fns';
 import Container from './Container';
 

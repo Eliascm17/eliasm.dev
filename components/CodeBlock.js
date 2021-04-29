@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-import { Box, Flex, useColorMode } from '@chakra-ui/react';
 import nightOwl from 'prism-react-renderer/themes/nightOwl';
 import palenight from 'prism-react-renderer/themes/palenight';
 

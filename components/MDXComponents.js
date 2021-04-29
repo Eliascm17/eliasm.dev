@@ -1,14 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import {
-  Heading,
-  Text,
-  Box,
-  Alert,
-  useColorMode,
-  Divider,
-  Code
-} from '@chakra-ui/react';
 import { InfoIcon } from '@chakra-ui/icons';
 import CodeBlock from './CodeBlock';
 

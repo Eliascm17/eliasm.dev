@@ -1,7 +1,6 @@
 import BlogPost from '@/components/BlogPost';
 import Container from '@/components/Container';
 import { getAllFilesFrontMatter } from '@/lib/mdx';
-import { Flex, Text } from '@chakra-ui/react';
 
 export default function Blog({ posts }) {
   return (
