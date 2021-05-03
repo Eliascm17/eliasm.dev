@@ -1,239 +1,91 @@
+import { useState, useEffect } from 'react';
+import Container from '@/components/Container';
 import Icon from '@/components/Icon';
-import {
-  Flex,
-  Heading,
-  Link,
-  Stack,
-  Text,
-  useColorMode
-} from '@chakra-ui/react';
-import React from 'react';
-import Container from '../components/Container';
-import Experience from '../components/Experience';
-import Project from '../components/Project';
-import Head from 'next/head';
-import Footer from '@/components/Footer';
+import projects from '@/lib/projects';
+import experience from '@/lib/experience';
+import favorites from '@/lib/favorites';
+import { useTheme } from 'next-themes';
 
 export default function Home() {
-  const { colorMode } = useColorMode();
+  const [mounted, setMounted] = useState(false);
+  const { theme } = useTheme();
 
-  const secondaryTextColor = {
-    light: 'gray.700',
-    dark: 'gray.400'
-  };
-
-  const linkTextColor = {
-    light: '#d41111',
-    dark: 'blue.400'
-  };
-
-  const iconColor = {
-    light: 'white',
-    dark: 'gray.900'
-  };
-
-  const favorites = [
-    'react',
-    'nextjs',
-    'javascript',
-    'graphql',
-    'firebase',
-    'aws-amplify',
-    'adobexd',
-    'vercel'
-  ];
+  useEffect(() => setMounted(true), []);
 
   return (
     <Container>
-      <Stack
-        as="main"
-        spacing={8}
-        justifyContent="center"
-        alignItems="flex-start"
-        m="0 auto 4rem auto"
-        maxWidth="700px"
-      >
-        <Flex
-          mt={4}
-          flexDirection="column"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          maxWidth="700px"
-        >
-          <Head>
-            <title>Elias Moreno 👨🏾‍💻</title>
-          </Head>
-          <Heading letterSpacing="tight" mb={2} as="h1" size="2xl">
-            Hi, I'm Elias 👨🏾‍💻
-          </Heading>
-          <Text color={secondaryTextColor[colorMode]}>
+      <div className="flex flex-col justify-center mx-auto max-w-2xl space-y-12 my-16">
+        <div className="space-y-5">
+          <h1 className="text-4xl md:text-6xl font-bold">Hi, I'm Elias 👨🏾‍💻</h1>
+          <p className="text-md text-gray-900 dark:text-gray-400">
             Site Reliability Engineer at Samsung Austin Semiconductors
-          </Text>
-          <Text mt={4} color={secondaryTextColor[colorMode]}>
-            Click{' '}
-            <Link
-              href="https://eliascm17.github.io/Resume/resume.pdf"
-              title="resume"
-              isExternal
+          </p>
+        </div>
+        <div className="space-y-5">
+          <h1 className="text-3xl font-bold">Projects</h1>
+          {projects.map((project, key) => (
+            <div
+              className="flex flex-col p-3 w-full border border-gray-600 rounded-md space-y-2"
+              key={key}
             >
-              here
-            </Link>{' '}
-            for my resume 😄
-          </Text>
-        </Flex>
-        <Flex
-          flexDirection="column"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          maxWidth="700px"
-        >
-          <Heading letterSpacing="tight" mb={4} size="xl" fontWeight={700}>
-            Projects
-          </Heading>
-          <Project
-            title="Github Search Clone"
-            description="Clone of GitHub’s search page using GitHub APIs that displays relevant Repositories, Commits, and Users"
-            href="https://javascript-take-home.vercel.app/"
-            iconlist={['react', 'javascript', 'nextjs', 'tailwind', 'vercel']}
-          />
-          <Project
-            title="Next.js + AWS Amplify + TailwindCSS Authentication Flow"
-            description="Authentication Flow using Next.js, AWS Amplify, and TailwindCSS."
-            href="https://amplify-next-auth.vercel.app/"
-            iconlist={[
-              'react',
-              'javascript',
-              'nextjs',
-              'aws-amplify',
-              'tailwind',
-              'vercel'
-            ]}
-          />
-          <Project
-            title="Next.js + AWS Amplify + GraphQL + TailwindCSS Todo app"
-            description="Todo app using Next.js, AWS Amplify, GraphQL, and TailwindCSS."
-            href="https://nextjs-aws-todo.vercel.app/"
-            iconlist={[
-              'react',
-              'javascript',
-              'nextjs',
-              'graphql',
-              'aws-amplify',
-              'tailwind',
-              'vercel'
-            ]}
-          />
-          <Project
-            title="Athena - Senior Capstone (CS 4366)"
-            description="A kitchen inventory mobile application useful for tracking a kitchen’s current inventory and a helpful way to minimize food waste."
-            href="https://github.com/Athena-Capstone-2020/athena-mobile-app"
-            iconlist={['react', 'javascript', 'firebase', 'adobexd']}
-          />
-          <Project
-            title="Gift Fund Tracker - TTU Institutional Advancement"
-            description="Implemented high-profile web app that tracks and improves the time of scholarship lookups by more than double, leading to faster financial aid review and award times."
-            iconlist={['react', 'javascript', 'nextjs', 'adobexd']}
-          />
-          <Project
-            title="Prospect Affinity Model – TTU Institutional Advancement"
-            description="Tasked with ranking donors in the alumni CRM in a more intelligent way using RFM analysis and Customer Segmentation techniques"
-            iconlist={['python']}
-          />
-        </Flex>
-        <Flex
-          flexDirection="column"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          maxWidth="700px"
-        >
-          <Heading letterSpacing="tight" mb={4} size="xl" fontWeight={700}>
-            Experience
-          </Heading>
-          <Experience
-            company="Samsung Austin Semiconductors"
-            date="January 2021 - Present"
-            logo="samsung"
-            location="Austin, Texas"
-            role="Site Reliability Engineer"
-            href="https://www.samsung.com/us/sas/"
-            description={
-              <>
-                <Text>
-                  App owner that oversees and tests new releases of internal
-                  tooling that goes out to users within the company. As well as
-                  aid users with issues regarding internal app user interface
-                  whilst using various troubleshooting techniques
-                </Text>
-              </>
-            }
-          />
-          <Experience
-            company="Texas Tech University"
-            date="Sept 2019 - Dec 2020"
-            location="Lubbock, Texas"
-            role="Software Engineer Intern"
-            href="http://www.give2tech.com/"
-            description={
-              <Text>
-                Worked on projects such as Prospect Affinity Model and Gift Fund
-                Tracker. Both projects were developed in tandem with and for
-                Texas Tech Institutional Advancement.
-              </Text>
-            }
-          />
-          <Experience
-            company="AdaptIO"
-            date="Summer 2019"
-            location="Córdoba, Argentina"
-            role="Data Science Intern"
-            href="https://www.adaptio.com.ar/"
-            description={
-              <Text>
-                Worked on projects such as&nbsp;
-                <Link
-                  href="http://www.smartcities.com.ar/iGas/index.html"
-                  title="iGas"
-                  isExternal
-                >
-                  iGas Prediction
-                </Link>
-                . For this project I was tasked with using company data to
-                examine correlations between rates of depletion of gas tanks and
-                weather temperatures. I Approached this project by using climate
-                data from the Dark Sky API in conjunction with basic statistical
-                analysis as well as forms of machine learning (Time-Series
-                Analysis) to ultimately predict rates of consumption.
-              </Text>
-            }
-          />
-        </Flex>
-        <Flex
-          flexDirection="column"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-          maxWidth="700px"
-        >
-          <Heading letterSpacing="tight" mb={4} size="xl" fontWeight={700}>
-            My Favorite Technologies
-          </Heading>
-          <Text>
-            {favorites.map((icon, key) => {
-              return (
+              <div className="flex justify-between">
+                <div className="text-lg font-bold flex-wrap">
+                  {project.name}
+                </div>
+              </div>
+              <div>{project.description}</div>
+              <div className="flex space-x-1 flex-wrap">
+                Built with:&nbsp;&nbsp;
+                {mounted && (
+                  <div className="flex space-x-2">
+                    {project.builtWith.map((name, key) => (
+                      <Icon
+                        className="w-6 h-6"
+                        theme={theme}
+                        name={name}
+                        key={key}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="space-y-5">
+          <h1 className="text-3xl font-bold">Experience</h1>
+          {experience.map((job, key) => (
+            <div
+              className="flex flex-col p-3 w-full border border-gray-600 rounded-md space-y-2"
+              key={key}
+            >
+              <div>
+                <div>
+                  <div className="text-lg font-bold">{job.company}</div>
+                  <div>{job.title}</div>
+                </div>
+                <div>{job.date}</div>
+              </div>
+              <div>{job.description}</div>
+            </div>
+          ))}
+        </div>
+        <div className="space-y-5">
+          <h1 className="text-3xl font-bold">Toolbox</h1>
+          {mounted && (
+            <div className="flex flex-wrap space-x-3 items-center">
+              {favorites.map((tool, key) => (
                 <Icon
+                  className="h-16 w-16 my-2"
+                  name={tool}
                   key={key}
-                  aria-label={icon}
-                  name={icon}
-                  color={icon === 'nextjs' ? '' : iconColor[colorMode]}
-                  boxSize="60px"
-                  ml={2}
-                  mr={2}
-                  mt={[4, 3, 1, 0]}
+                  theme={theme}
                 />
-              );
-            })}
-          </Text>
-        </Flex>
-      </Stack>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </Container>
   );
 }

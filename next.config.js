@@ -10,3 +10,9 @@ const mdx = require('next-mdx-enhanced')({
 const nextConfig = { pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx', 'md'] };
 
 module.exports = withPlugins([mdx], nextConfig);
+
+module.exports = {
+  images: {
+    domains: ['eliasm.dev']
+  }
+};
