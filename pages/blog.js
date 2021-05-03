@@ -5,18 +5,12 @@ import { getAllFilesFrontMatter } from '@/lib/mdx';
 export default function Blog({ posts }) {
   return (
     <Container>
-      <Flex flexDirection="column" alignSelf="center">
-        <Text
-          ml={10}
-          fontSize={['3xl', '4xl', '5xl', '6xl', '6xl']}
-          fontWeight="bold"
-        >
-          Blog
-        </Text>
+      <div className="flex flex-col justify-start mx-auto max-w-2xl space-y-12 my-16">
+        <div className="font-bold text-4xl sm:text-6xl">Blog</div>
         {posts.map((post) => {
           return <BlogPost {...post} key={post.id} />;
         })}
-      </Flex>
+      </div>
     </Container>
   );
 }
