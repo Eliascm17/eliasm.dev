@@ -8,7 +8,7 @@ const BlogPost = ({ title, summary, id, image }) => {
         <div className="text-md">{summary}</div>
       </div>
       <div className="hidden md:block">
-        <Image src={image} height={140} width={238} className="rounded-sm" />
+        <Image src={image} height={140} width={238} className="rounded-md" />
       </div>
     </a>
   );

@@ -1,6 +1,7 @@
 import hydrate from 'next-mdx-remote/hydrate';
 import { getAllFiles, getFileById } from '@/lib/mdx';
 import BlogLayout from '@/components/BlogLayout';
+import MDXComponents from '@/components/MDXComponents';
 
 const Blog = ({ mdxSource, frontMatter }) => {
   const content = hydrate(mdxSource, {
