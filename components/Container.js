@@ -44,7 +44,7 @@ const Container = ({ children, ...customMeta }) => {
           <meta property="article:published_time" content={meta.date} />
         )}
       </Head>
-      <nav className="flex sticky z-10 top-0 transition items-center justify-between px-8 pt-16">
+      <nav className="flex transition items-center justify-between px-8 pt-16 max-w-4xl w-full mx-auto">
         <button
           className="p-2 rounded-md focus:outline-none bg-button-light dark:bg-button-dark dark:stroke-current dark:text-button-light hover:bg-button-light-hover dark:hover:bg-button-dark-hover transition ease-in-out duration-200"
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
@@ -56,13 +56,16 @@ const Container = ({ children, ...customMeta }) => {
             />
           )}
         </button>
-        <div className="flex space-x-4 ">
-          <NextLink href="/">
+        <div className="flex space-x-4">
+          <a href="/">
             <div>Home</div>
-          </NextLink>
-          <NextLink href="/blog">
+          </a>
+          <a href="/blog">
             <div>Blog</div>
-          </NextLink>
+          </a>
+          <a href="https://eliascm17.github.io/Resume/resume.pdf">
+            <div>Resume</div>
+          </a>
         </div>
       </nav>
       <main className="flex flex-col justify-center bg-white dark:bg-dark px-8">
