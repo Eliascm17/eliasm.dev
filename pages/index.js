@@ -49,6 +49,28 @@ export default function Home() {
                   </div>
                 )}
               </div>
+              {mounted && (
+                <div className="flex items-center space-x-2 pt-2">
+                  {project.repo && (
+                    <a href={project.repo} target="_blank">
+                      <Icon
+                        className="w-6 h-6 fill-current text-gray-400 hover:text-gray-500 text-md transition ease-in-out duration-300"
+                        theme={theme}
+                        name="github"
+                      />
+                    </a>
+                  )}
+                  {project.href && (
+                    <a href={project.href} target="_blank">
+                      <Icon
+                        className="w-7 h-7 stroke-current text-gray-400 hover:text-gray-500 text-md transition ease-in-out duration-300"
+                        theme={theme}
+                        name="externalLink"
+                      />
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>
