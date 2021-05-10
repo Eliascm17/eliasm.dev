@@ -54,7 +54,7 @@ export default function Home() {
                   {project.repo && (
                     <a href={project.repo} target="_blank">
                       <Icon
-                        className="w-6 h-6 fill-current text-gray-400 hover:text-gray-500 text-md transition ease-in-out duration-300"
+                        className="w-5 h-5 fill-current text-gray-400 hover:text-gray-500 text-md transition ease-in-out duration-300"
                         theme={theme}
                         name="github"
                       />
@@ -63,7 +63,7 @@ export default function Home() {
                   {project.href && (
                     <a href={project.href} target="_blank">
                       <Icon
-                        className="w-7 h-7 stroke-current text-gray-400 hover:text-gray-500 text-md transition ease-in-out duration-300"
+                        className="w-6 h-6 stroke-current text-gray-400 hover:text-gray-500 text-md transition ease-in-out duration-300"
                         theme={theme}
                         name="externalLink"
                       />
