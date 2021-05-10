@@ -15,10 +15,14 @@ export default function Home() {
   return (
     <Container>
       <div className="flex flex-col justify-center mx-auto max-w-2xl space-y-12 my-16">
-        <div className="space-y-5">
+        <div className="space-y-4">
           <h1 className="text-4xl md:text-6xl font-bold">Hi, I'm Elias 👨🏾‍💻</h1>
-          <p className="text-md text-gray-900 dark:text-gray-400">
+          {/* <p className="text-md text-gray-900 dark:text-gray-400">
             Site Reliability Engineer at Samsung Austin Semiconductors
+          </p> */}
+          <p className="text-lg text-gray-900 dark:text-gray-300">
+            <span className="text-2xl">🕵🏽‍♂️</span> Currently looking for new
+            oppurtunites as a full-stack developer
           </p>
         </div>
         <div className="space-y-5">
