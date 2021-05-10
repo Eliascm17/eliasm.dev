@@ -1,6 +1,6 @@
-import { Flex, Text, Image } from '@chakra-ui/react';
 import { parseISO, format } from 'date-fns';
 import Container from './Container';
+import Image from 'next/image';
 
 const BlogLayout = ({ children, frontMatter }) => {
   return (
@@ -11,39 +11,35 @@ const BlogLayout = ({ children, frontMatter }) => {
       date={new Date(frontMatter.timestamp).toISOString()}
       type="article"
     >
-      <Flex
-        flexDirection="column"
-        alignSelf="center"
-        m="0 auto 2rem auto"
-        maxWidth={'700px'}
-        w={[350, 380, 500, 660, 700]}
-      >
-        <Text fontSize={['2xl', '3xl', '4xl', '6xl']} fontWeight="bold">
+      <article className="flex flex-col items-start max-w-2xl justify-center mx-auto my-8 w-full">
+        <h1 className="font-bold text-3xl md:text-5xl tracking-normal mb-4">
           {frontMatter.title}
-        </Text>
-        <Flex
-          flexDirection="row"
-          alignItems="center"
-          justifyContent="space-between"
-          mt={2}
-        >
-          <Flex alignItems="center">
+        </h1>
+        <div className="flex items-center justify-between my-4">
+          <div className="flex items-center">
             <Image
-              borderRadius="full"
-              boxSize="35px"
+              className="rounded-full"
+              width={35}
+              height={35}
               src="/me.jpg"
               alt="Elias Moreno"
             />
-            <Text fontSize="md" ml={4}>
+            <div className="ml-4">
               {`Elias Moreno / ${format(
                 new Date(frontMatter.timestamp),
                 'MMMM dd yyyy'
               )}`}
-            </Text>
-          </Flex>
-        </Flex>
-        <Text>{children}</Text>
-      </Flex>
+            </div>
+          </div>
+        </div>
+        <div className="max-w-none w-full mx-auto space-y-4">{children}</div>
+        <div className="text-sm text-gray-700 dark:text-gray-300">
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            {'Find me on Twitter '}
+          </a>
+          {` • `}
+        </div>
+      </article>
     </Container>
   );
 };

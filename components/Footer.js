@@ -1,86 +1,43 @@
-import { EmailIcon } from '@chakra-ui/icons';
-import { Box, Flex, IconButton, Link } from '@chakra-ui/react';
-import React from 'react';
-import { Github, LinkedIn, Resume, Spotify, Twitter } from '../styles';
+const ExternalLink = ({ children, href, alt, newTab = true }) => {
+  return (
+    <a
+      className="text-gray-400 hover:text-gray-500 text-md transition ease-in-out duration-200"
+      href={href}
+      alt={alt}
+      target={newTab === true ? '_blank' : ''}
+    >
+      {children}
+    </a>
+  );
+};
 
 const Footer = () => (
-  <Box
-    display="flex"
-    justifyContent="space-around"
-    alignSelf="center"
-    align="end"
-    maxW={['200px', '300px', '350px', '400px']}
-    w="100%"
-    // my={6}
-    mb={8}
-  >
-    <Link href="https://twitter.com/eliascm17" title="Twitter" isExternal>
-      <Twitter
-        aria-label="Twitter"
-        icon="twitter"
-        size="lg"
-        color="gray.500"
-        variant="ghost"
-      />
-    </Link>
-    <Link href="https://github.com/eliascm17" title="GitHub" isExternal>
-      <Github
-        aria-label="GitHub"
-        icon="github"
-        size="lg"
-        color="gray.500"
-        variant="ghost"
-      />
-    </Link>
-    <Link
-      href="https://www.linkedin.com/in/eliascm17"
-      title="LinkedIn"
-      isExternal
-    >
-      <LinkedIn
-        aria-label="LinkedIn"
-        icon="linkedin"
-        size="lg"
-        color="gray.500"
-        variant="ghost"
-      />
-    </Link>
-    <Link
-      href="https://open.spotify.com/user/eliascm17?si=Mm8KNjZhT3OHn4YIe4C8Ng"
-      title="Spofity"
-      isExternal
-    >
-      <Spotify
-        aria-label="Spotify"
-        icon="spotify"
-        size="lg"
-        color="gray.500"
-        variant="ghost"
-      />
-    </Link>
-    <Link
-      href="https://eliascm17.github.io/Resume/Resume%20Fall%202020.pdf"
-      title="Resume"
-      isExternal
-    >
-      <Resume
-        aria-label="Resume"
-        icon="resume"
-        size="lg"
-        color="gray.500"
-        variant="ghost"
-      />
-    </Link>
-    <Link href="mailto:Elias.cmoreno17@gmail.com" title="Email" isExternal>
-      <EmailIcon
-        aria-label="Email"
-        icon="mail"
-        size="lg"
-        color="gray.500"
-        variant="ghost"
-      />
-    </Link>
-  </Box>
+  <footer className="flex flex-col w-full items-start justify-center max-w-2xl mx-auto space-y-4 mb-12">
+    <hr className="w-full border-1 border-gray-400 dark:border-gray-500 mb-6" />
+    <div className="w-full max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <ExternalLink href="https://github.com/eliascm17" alt="github">
+        GitHub
+      </ExternalLink>
+      <ExternalLink href="https://linkedin.com/in/eliascm17" alt="linkedin">
+        LinkedIn
+      </ExternalLink>
+      <ExternalLink
+        href="https://eliascm17.github.io/Resume/resume.pdf"
+        alt="resume"
+      >
+        Resume
+      </ExternalLink>
+      <ExternalLink href="mailto:Elias.cmoreno17@gmail.com" alt="email">
+        Email
+      </ExternalLink>
+      <ExternalLink href="https://twitter.com/eliascm17" alt="twitter">
+        Twitter
+      </ExternalLink>
+      <ExternalLink href="/blog" alt="twitter" newTab={false}>
+        Blog
+      </ExternalLink>
+    </div>
+  </footer>
 );
 
 export default Footer;
